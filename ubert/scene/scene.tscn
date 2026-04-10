@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cfe4epaksapw3"]
+
+[ext_resource type="Texture2D" uid="uid://cymc7jmat1vwf" path="res://assets/background/btm.png" id="1_c7c3h"]
+[ext_resource type="Texture2D" uid="uid://cud63hj4atr5a" path="res://assets/background/top.png" id="2_31dbv"]
+[ext_resource type="Texture2D" uid="uid://dwj5nxp4eeu7x" path="res://assets/background/mid.png" id="3_muqyd"]
+[ext_resource type="Script" uid="uid://csimm75jt7e68" path="res://scripts/character_body_2d.gd" id="4_muqyd"]
+[ext_resource type="Texture2D" uid="uid://cgk0027m3gv7j" path="res://assets/entity/ubert.png" id="5_jotk5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vr40t"]
+radius = 79.82
+
+[node name="scene" type="Node2D" unique_id=845916023]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1571860977]
+
+[node name="Btm" type="Sprite2D" parent="CanvasGroup" unique_id=1615238820]
+position = Vector2(320, 901)
+texture = ExtResource("1_c7c3h")
+
+[node name="Btm2" type="Sprite2D" parent="CanvasGroup" unique_id=670187149]
+position = Vector2(961, 902)
+texture = ExtResource("1_c7c3h")
+
+[node name="Top" type="Sprite2D" parent="CanvasGroup" unique_id=1695216870]
+position = Vector2(960, 181)
+texture = ExtResource("2_31dbv")
+
+[node name="Top2" type="Sprite2D" parent="CanvasGroup" unique_id=1418063695]
+position = Vector2(320, 181)
+texture = ExtResource("2_31dbv")
+
+[node name="Mid" type="Sprite2D" parent="CanvasGroup" unique_id=946115182]
+position = Vector2(320, 541)
+texture = ExtResource("3_muqyd")
+
+[node name="Mid2" type="Sprite2D" parent="CanvasGroup" unique_id=1231203574]
+position = Vector2(960, 541)
+texture = ExtResource("3_muqyd")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1891560037]
+position = Vector2(317, 180)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=435564413]
+motion_mode = 1
+script = ExtResource("4_muqyd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=22436741]
+shape = SubResource("CircleShape2D_vr40t")
+
+[node name="Ubert" type="Sprite2D" parent="CharacterBody2D" unique_id=1800262484]
+texture = ExtResource("5_jotk5")
