@@ -1,27 +1,194 @@
 [gd_scene format=3 uid="uid://b6ymy1fbfbcq0"]
 
-[ext_resource type="Texture2D" uid="uid://dce6wouojxc8g" path="res://assets/background/tmp-layout-fullsize.png" id="1_aw33w"]
+[ext_resource type="Texture2D" uid="uid://tm82x6tkqtsj" path="res://assets/background/last/ocean 1 deep.png" id="1_7g6sx"]
+[ext_resource type="Script" uid="uid://5aj5tpr0g2ul" path="res://scripts/main.gd" id="1_t2nud"]
 [ext_resource type="PackedScene" uid="uid://bwv5g1hqpdau5" path="res://scene/point_of_interest.tscn" id="2_ktmlt"]
+[ext_resource type="Texture2D" uid="uid://b6fkf46v0bd88" path="res://assets/background/last/ocean 1&2 mix deep.png" id="2_t2nud"]
+[ext_resource type="Texture2D" uid="uid://bpup2fhqb0gi2" path="res://assets/background/last/ocean 2 deep.png" id="3_jkyoy"]
 [ext_resource type="Texture2D" uid="uid://bhd4dsi6mlrf5" path="res://assets/entity/poi.png" id="3_oxop7"]
 [ext_resource type="Texture2D" uid="uid://csilh57t10tl0" path="res://assets/entity/item.png" id="4_gunnj"]
+[ext_resource type="Texture2D" uid="uid://de0mdkbr4xtjs" path="res://assets/background/last/ocean 2&3 mix deep.png" id="4_mawuw"]
+[ext_resource type="Texture2D" uid="uid://pran3yin1oe0" path="res://assets/background/last/ocean 3 deep.png" id="5_42gcl"]
 [ext_resource type="Script" uid="uid://csimm75jt7e68" path="res://scripts/character_body_2d.gd" id="5_j35ge"]
 [ext_resource type="PackedScene" uid="uid://dpn8wjkcfshdy" path="res://scene/start_menu.tscn" id="5_ktmlt"]
+[ext_resource type="Texture2D" uid="uid://b5crx4qj0rwi2" path="res://assets/background/last/ocean 3&4 mix deep.png" id="6_g8v4b"]
 [ext_resource type="Texture2D" uid="uid://cgk0027m3gv7j" path="res://assets/entity/ubert-r.png" id="6_kfbl3"]
 [ext_resource type="Texture2D" uid="uid://cpdy3fpxmjxi1" path="res://assets/entity/ubert-l.png" id="7_3u5es"]
+[ext_resource type="Texture2D" uid="uid://drsrb2jskhdwm" path="res://assets/background/last/ocean 4 deep.png" id="7_up2ny"]
+[ext_resource type="Texture2D" uid="uid://8uj48v2vxgtn" path="res://assets/background/last/ocean 4&5 mix deep.png" id="8_28jen"]
 [ext_resource type="Texture2D" uid="uid://xwkluv18d4de" path="res://assets/background/tmp-wall-layout-fullsize.png" id="8_60efd"]
 [ext_resource type="Texture2D" uid="uid://cnpgwoo7swdtt" path="res://assets/background/fg_misc.png" id="9_ow60o"]
+[ext_resource type="Texture2D" uid="uid://ylwplavoak85" path="res://assets/background/last/ocean 5 deep.png" id="9_tlon1"]
+[ext_resource type="Texture2D" uid="uid://w70wqi185kue" path="res://assets/background/last/ocean 5&6 mix deep.png" id="10_328os"]
+[ext_resource type="Texture2D" uid="uid://28nn6881jqdm" path="res://assets/background/last/ocean 6 deep.png" id="11_hen5n"]
 [ext_resource type="FontFile" uid="uid://c8j8jobkplgvo" path="res://assets/font/Splash-Regular.ttf" id="11_oxop7"]
+[ext_resource type="Texture2D" uid="uid://yhh52j81s1t8" path="res://assets/background/last/ocean 6&7 mix deep.png" id="12_k6k75"]
+[ext_resource type="Texture2D" uid="uid://b1oufh1ppj3lh" path="res://assets/background/last/ocean 7 deep.png" id="13_hov2m"]
+[ext_resource type="Texture2D" uid="uid://cnqg6kvf4eacl" path="res://assets/background/last/ocean 7&8 mix deep.png" id="14_irv0p"]
+[ext_resource type="Texture2D" uid="uid://dlasimbnsc1gy" path="res://assets/background/last/ocean 8 deep.png" id="15_sas3p"]
+[ext_resource type="Texture2D" uid="uid://s6ssms64jxhr" path="res://assets/background/last/ocean 8&9 mix deep.png" id="16_ta4xs"]
+[ext_resource type="Texture2D" uid="uid://bdyqjhdccl4jp" path="res://assets/background/last/ocean 9 deep.png" id="17_ghvb6"]
+[ext_resource type="Texture2D" uid="uid://dca1oqwkde4s0" path="res://assets/background/last/sky tile.png" id="18_g6u61"]
+[ext_resource type="Texture2D" uid="uid://bh8wxsa1xuwn2" path="res://assets/background/wave/wave1.png" id="19_ipxq3"]
+[ext_resource type="Texture2D" uid="uid://sq8evcbi3eog" path="res://assets/background/wave/wave2.png" id="20_rc1i6"]
+[ext_resource type="Texture2D" uid="uid://h7xtwvey4kkq" path="res://assets/background/wave/wave3.png" id="21_o0ehv"]
+[ext_resource type="Texture2D" uid="uid://bg824kpeudeo7" path="res://assets/background/wave/wave4.png" id="22_ub60f"]
 
 [node name="Main" type="Node2D" unique_id=1152862137]
+script = ExtResource("1_t2nud")
+tex_wave_1 = ExtResource("19_ipxq3")
+tex_wave_2 = ExtResource("20_rc1i6")
+tex_wave_3 = ExtResource("21_o0ehv")
+tex_wave_4 = ExtResource("22_ub60f")
 
 [node name="bg" type="Parallax2D" parent="." unique_id=1692096008]
 scroll_scale = Vector2(0.6, 0.6)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="bg" unique_id=1637706027]
 
-[node name="Btm" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1178386032]
-position = Vector2(109, 2344)
-texture = ExtResource("1_aw33w")
+[node name="Btm_sky2" type="Sprite2D" parent="bg/CanvasGroup" unique_id=650523312]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 240)
+texture = ExtResource("18_g6u61")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm1_2" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1063898882]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 720)
+texture = ExtResource("2_t2nud")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm2" type="Sprite2D" parent="bg/CanvasGroup" unique_id=25661777]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 1200)
+texture = ExtResource("3_jkyoy")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm2_3" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1425882878]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 1680)
+texture = ExtResource("4_mawuw")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm3" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1449115864]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 2160)
+texture = ExtResource("5_42gcl")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm3_4" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1879724368]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 2640)
+texture = ExtResource("6_g8v4b")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm4" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1995615981]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 3120)
+texture = ExtResource("7_up2ny")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm4_5" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1205718226]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 3600)
+texture = ExtResource("8_28jen")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm5" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1756978972]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 4080)
+texture = ExtResource("9_tlon1")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm5_6" type="Sprite2D" parent="bg/CanvasGroup" unique_id=565844699]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 4560)
+texture = ExtResource("10_328os")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm6" type="Sprite2D" parent="bg/CanvasGroup" unique_id=608140838]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 5040)
+texture = ExtResource("11_hen5n")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm6_7" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1124045810]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 5520)
+texture = ExtResource("12_k6k75")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm7" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1757271232]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 6000)
+texture = ExtResource("13_hov2m")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm7_8" type="Sprite2D" parent="bg/CanvasGroup" unique_id=2050285834]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 6480)
+texture = ExtResource("14_irv0p")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm8" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1933097734]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 6960)
+texture = ExtResource("15_sas3p")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm8_9" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1871300986]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 7440)
+texture = ExtResource("16_ta4xs")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm9" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1664566837]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 14880)
+texture = ExtResource("17_ghvb6")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm_sky" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1553279880]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, -240)
+texture = ExtResource("18_g6u61")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
 position = Vector2(-8, 504)
@@ -38,6 +205,38 @@ poi_name = "gaming 2"
 [node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
 visible = false
 position = Vector2(335, 48)
+
+[node name="Btm_wave_l1" type="Sprite2D" parent="." unique_id=1422947387]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, -10)
+texture = ExtResource("19_ipxq3")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 32)
+
+[node name="Btm_wave_l2" type="Sprite2D" parent="." unique_id=840376579]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, -5)
+texture = ExtResource("20_rc1i6")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 32)
+
+[node name="Btm_wave_l3" type="Sprite2D" parent="." unique_id=1056450676]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, -1)
+texture = ExtResource("21_o0ehv")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 32)
+
+[node name="Btm1" type="Sprite2D" parent="." unique_id=1178386032]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 246)
+texture = ExtResource("1_7g6sx")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Ubert" type="CharacterBody2D" parent="." unique_id=2042117063]
 motion_mode = 1

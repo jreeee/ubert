@@ -19,6 +19,7 @@ var oxygen_status := 100.0
 var depth_status := 0
 var max_depth := 20 # can be upgraded
 var grace := 200
+# TODO sound stuff
 var alarm_d1 := false
 var alarm_d2 := false
 var alarm_d3 := false
@@ -32,6 +33,9 @@ func _process(delta: float) -> void:
 	oxygen_status -= delta * 0.1
 	if oxygen_status < 0:
 		print("Game Over")
+	print(position.y)
+	if position.y < 0 and oxygen_status < 100:
+		oxygen_status = clamp(oxygen_status + 2 * delta, 0.0, 100.0)
 	
 	# --- Grace ---
 	var depth_delta  = max_depth - depth_status
@@ -62,7 +66,7 @@ func _process(delta: float) -> void:
 			# TODO
 	
 	# update UI
-	clamp(energy_status, 0, 100)
+	clamp(energy_status, 0.0, 100.0)
 	ui_depth.text = "[center]Depth: " + str(depth_status) + "/" + str(max_depth) + "[/center]"
 	ui_oxygen.text = "[center]O2: " + str("%3.1f" % oxygen_status) + "%[/center]"
 	ui_energy.text = "[center]Energy: " + str("%3.1f" % energy_status) + "%[/center]"
