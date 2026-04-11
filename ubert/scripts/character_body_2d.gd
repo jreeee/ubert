@@ -28,7 +28,7 @@ class_name Player extends CharacterBody2D
 @export var vignette_9 : Texture2D
 
 var horizontal_speed := 200.0
-var vertical_speed := 500.0 # 50
+var vertical_speed := 50
 var rotation_speed := 1.0
 var acceleration := 500.0
 var deceleration := 400.0
@@ -63,6 +63,8 @@ func _ready() -> void:
 	array_ving = [	vignette_0, vignette_1, vignette_2, vignette_3, 
 					vignette_4, vignette_5, vignette_6 ,vignette_7,
 					vignette_8 ,vignette_9]
+	vignette_tex_a.visible = true
+	vignette_tex_b.visible = true
 	vignette_tex_a.texture = array_ving[ving_idx]
 	vignette_tex_a.modulate.a = 0
 	vignette_tex_b.modulate.a = 0
@@ -94,7 +96,7 @@ func _darken(f: float) -> void:
 		var base_alpha = 1.0
 
 		if fading:
-			fade_t += abs(f - zone_trigger) / 10000 * 5
+			fade_t += abs(f - zone_trigger) / 10000
 			print("FD" + str(fade_t))
 			fade_t = clamp(fade_t, 0.0, 1.0)
 			print("FD" + str(fade_t))
@@ -104,8 +106,8 @@ func _darken(f: float) -> void:
 			# urgh ugly
 			var total = a_alpha + b_alpha
 			if total > 0.0:
-				a_alpha /= total * 1.7
-				b_alpha /= total * 1.7
+				a_alpha /= total * 3
+				b_alpha /= total * 3
 			vignette_tex_a.modulate.a = a_alpha * base_alpha
 			vignette_tex_b.modulate.a = b_alpha * base_alpha
 
@@ -201,7 +203,7 @@ func _physics_process(delta: float) -> void:
 	
 	var direction := Vector2.RIGHT.rotated(rotation)
 	if abs(rotation) > 2.5 and not is_sprite_left:
-				direction.x *= -1
+		direction *= Vector2.RIGHT.rotated(-rotation)
 	# axis movement inputs
 	# respects the local rotation
 	var direction_h := Input.get_axis("ui_left", "ui_right")
@@ -211,8 +213,12 @@ func _physics_process(delta: float) -> void:
 	var direction_v := Input.get_axis("ui_up", "ui_down")
 	var hrz := Vector2(0, vertical_speed * direction_v)
 	# apply input (impulse based)
+
 	if (direction_h or direction_v) and energy_status > 0:
 		var target_velocity := fwd + hrz
+		if Input.is_action_pressed("ui_cheat"):
+			target_velocity *= 15
+			energy_status += 20 * delta
 		# do not go above the water line
 		if position.y < 0 and target_velocity.y < 0:
 			target_velocity.y = 0

@@ -26,7 +26,6 @@ var timer : int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	wave_1.texture = array[wave_1_idx]
 	wave_2.texture = array[wave_2_idx]
 	wave_3.texture = array[wave_3_idx]

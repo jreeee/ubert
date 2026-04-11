@@ -33,19 +33,36 @@
 [ext_resource type="Texture2D" uid="uid://bh8wxsa1xuwn2" path="res://assets/background/wave/wave1.png" id="19_ipxq3"]
 [ext_resource type="Texture2D" uid="uid://sq8evcbi3eog" path="res://assets/background/wave/wave2.png" id="20_rc1i6"]
 [ext_resource type="Texture2D" uid="uid://h7xtwvey4kkq" path="res://assets/background/wave/wave3.png" id="21_o0ehv"]
+[ext_resource type="Texture2D" uid="uid://c2tnqdns602n" path="res://assets/background/2nd/ocean 1 second layer_tsp.png" id="27_6n7om"]
+[ext_resource type="Texture2D" uid="uid://crdqmrarwh136" path="res://assets/background/2nd/ocean 1&2 second layer.png" id="30_g3j2c"]
 [ext_resource type="Texture2D" uid="uid://y0qi0ns0j1pl" path="res://assets/ui/vignette-1.png" id="30_k6k75"]
+[ext_resource type="Texture2D" uid="uid://llqi682i0fkx" path="res://assets/background/2nd/ocean 2 second layer.png" id="31_6n7om"]
 [ext_resource type="Texture2D" uid="uid://cwqip0e0sl88q" path="res://assets/ui/vignette-2.png" id="31_hov2m"]
 [ext_resource type="Texture2D" uid="uid://cttlmqdqbv6c3" path="res://assets/ui/vignette-3.png" id="32_irv0p"]
+[ext_resource type="Texture2D" uid="uid://3rq5dll2ej6b" path="res://assets/background/2nd/ocean 2&3 second layer.png" id="32_s6ms7"]
 [ext_resource type="Texture2D" uid="uid://j8jd3dmtkqpf" path="res://assets/entity/fish/jellyfish.png" id="32_t2nud"]
+[ext_resource type="Texture2D" uid="uid://c8r157n188e3j" path="res://assets/background/2nd/ocean 3 deep second layer.png" id="33_0xlfg"]
 [ext_resource type="Texture2D" uid="uid://dc1rseifca8fl" path="res://assets/ui/vignette-4.png" id="33_sas3p"]
+[ext_resource type="Texture2D" uid="uid://b6x1ecmp1qxud" path="res://assets/background/2nd/ocean 3&4 second layer.png" id="34_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://das1b55kkc88s" path="res://assets/ui/vignette-0.png" id="34_jkyoy"]
 [ext_resource type="Texture2D" uid="uid://bd5rfjg6vuqof" path="res://assets/ui/vignette-5.png" id="34_ta4xs"]
 [ext_resource type="Texture2D" uid="uid://besvxqya5ksqj" path="res://assets/ui/vignette-6.png" id="35_ghvb6"]
+[ext_resource type="Texture2D" uid="uid://b1yxir2tswtxf" path="res://assets/background/2nd/ocean 4 deep second layer.png" id="35_pqwqv"]
 [ext_resource type="Texture2D" uid="uid://cb778rhyubb34" path="res://assets/ui/vignette-7.png" id="36_g6u61"]
+[ext_resource type="Texture2D" uid="uid://bg328wbn0cqb0" path="res://assets/background/2nd/ocean 4&5 deep second layer.png" id="36_ne45u"]
 [ext_resource type="Texture2D" uid="uid://co5eqg5wmw7ht" path="res://assets/ui/vignette-8.png" id="37_ipxq3"]
+[ext_resource type="Texture2D" uid="uid://dovo0su1qgryn" path="res://assets/background/2nd/ocean 5 deep second layer.png" id="37_nuvdw"]
 [ext_resource type="Texture2D" uid="uid://dhxv8jsp5snlu" path="res://assets/ui/vignette-9.png" id="38_rc1i6"]
+[ext_resource type="Texture2D" uid="uid://cfotfcdvtqngy" path="res://assets/background/2nd/ocean 5&6 deep second layer.png" id="38_vfto0"]
+[ext_resource type="Texture2D" uid="uid://y7sa3mjlkajh" path="res://assets/background/2nd/ocean 6 deep second layer.png" id="39_2tbbd"]
+[ext_resource type="Texture2D" uid="uid://bo0md8mqltf3h" path="res://assets/background/2nd/ocean 6&7 deep second layer.png" id="40_bom8a"]
+[ext_resource type="Texture2D" uid="uid://c2w8d60hkxnf4" path="res://assets/background/2nd/ocean 7 deep second layer.png" id="41_8ibpr"]
+[ext_resource type="Texture2D" uid="uid://dxngq1xxbeuc2" path="res://assets/background/2nd/ocean 7&8 deep second layer.png" id="42_oui4u"]
 [ext_resource type="Texture2D" uid="uid://dusomso4e65xc" path="res://assets/entity/ubert/uboot_animation_l.png" id="42_sas3p"]
 [ext_resource type="Texture2D" uid="uid://b5jy8d5fmwg3a" path="res://assets/entity/ubert/ubert_bubbles_l.png" id="43_sas3p"]
+[ext_resource type="Texture2D" uid="uid://x54mj8bhuryw" path="res://assets/background/2nd/ocean 8 deep second layer.png" id="43_tohs0"]
+[ext_resource type="Texture2D" uid="uid://vbbq7182cr1t" path="res://assets/background/2nd/ocean 8&9 deep second layer.png" id="44_nnw6x"]
+[ext_resource type="Texture2D" uid="uid://b1aw5k82lmfj7" path="res://assets/background/2nd/ocean 9 deep second layer.png" id="45_h4u7a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
 
@@ -131,7 +148,7 @@ scroll_scale = Vector2(0.6, 0.6)
 
 [node name="Btm1_2" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1063898882]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 720)
 texture = ExtResource("2_t2nud")
 region_enabled = true
@@ -139,7 +156,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm2" type="Sprite2D" parent="bg/CanvasGroup" unique_id=25661777]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 1200)
 texture = ExtResource("3_jkyoy")
 region_enabled = true
@@ -147,7 +164,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm2_3" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1425882878]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 1680)
 texture = ExtResource("4_mawuw")
 region_enabled = true
@@ -155,7 +172,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm3" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1449115864]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 2160)
 texture = ExtResource("5_42gcl")
 region_enabled = true
@@ -163,7 +180,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm3_4" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1879724368]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 2640)
 texture = ExtResource("6_g8v4b")
 region_enabled = true
@@ -171,7 +188,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm4" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1995615981]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 3120)
 texture = ExtResource("7_up2ny")
 region_enabled = true
@@ -179,7 +196,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm4_5" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1205718226]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 3600)
 texture = ExtResource("8_28jen")
 region_enabled = true
@@ -187,7 +204,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm5" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1756978972]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 4080)
 texture = ExtResource("9_tlon1")
 region_enabled = true
@@ -195,7 +212,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm5_6" type="Sprite2D" parent="bg/CanvasGroup" unique_id=565844699]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 4560)
 texture = ExtResource("10_328os")
 region_enabled = true
@@ -203,7 +220,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm6" type="Sprite2D" parent="bg/CanvasGroup" unique_id=608140838]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 5040)
 texture = ExtResource("11_hen5n")
 region_enabled = true
@@ -211,7 +228,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm6_7" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1124045810]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 5520)
 texture = ExtResource("12_k6k75")
 region_enabled = true
@@ -219,7 +236,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm7" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1757271232]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 6000)
 texture = ExtResource("13_hov2m")
 region_enabled = true
@@ -227,7 +244,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm7_8" type="Sprite2D" parent="bg/CanvasGroup" unique_id=2050285834]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 6480)
 texture = ExtResource("14_irv0p")
 region_enabled = true
@@ -235,7 +252,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm8" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1933097734]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 6960)
 texture = ExtResource("15_sas3p")
 region_enabled = true
@@ -243,7 +260,7 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm8_9" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1871300986]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, 7440)
 texture = ExtResource("16_ta4xs")
 region_enabled = true
@@ -251,8 +268,8 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm9" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1664566837]
 texture_filter = 1
-texture_repeat = 3
-position = Vector2(0, 14880)
+texture_repeat = 2
+position = Vector2(0, 7920)
 texture = ExtResource("17_ghvb6")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 480)
@@ -305,6 +322,15 @@ texture = ExtResource("21_o0ehv")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
 
+[node name="Btm1" type="Sprite2D" parent="." unique_id=1237827678]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 371)
+scale = Vector2(1, 1.919)
+texture = ExtResource("27_6n7om")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 360)
+
 [node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
 position = Vector2(-8, 504)
 sprite_tex = ExtResource("4_gunnj")
@@ -316,6 +342,139 @@ position = Vector2(112, 848)
 sprite_tex = ExtResource("3_oxop7")
 desc = "another awesome node, fun stuff"
 poi_name = "gaming 2"
+
+[node name="bg2" type="Parallax2D" parent="." unique_id=1047392137]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="bg2" unique_id=1254128796]
+
+[node name="Btm1_2" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=233225631]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 720)
+texture = ExtResource("30_g3j2c")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm2" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1798942339]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 1200)
+texture = ExtResource("31_6n7om")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm2_3" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1424724066]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 1680)
+texture = ExtResource("32_s6ms7")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm3" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=119773663]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 2160)
+texture = ExtResource("33_0xlfg")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm3_4" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=499880414]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 2640)
+texture = ExtResource("34_dfxqg")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm4" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1488511425]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 3120)
+texture = ExtResource("35_pqwqv")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm4_5" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=458218023]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 3600)
+texture = ExtResource("36_ne45u")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm5" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=404488682]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 4080)
+texture = ExtResource("37_nuvdw")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm5_6" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=236211417]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 4560)
+texture = ExtResource("38_vfto0")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm6" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1214669110]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 5040)
+texture = ExtResource("39_2tbbd")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm6_7" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=954856802]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 5520)
+texture = ExtResource("40_bom8a")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm7" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=437833435]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 6000)
+texture = ExtResource("41_8ibpr")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm7_8" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=2012591863]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 6480)
+texture = ExtResource("42_oui4u")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm8" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1972688240]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 6960)
+texture = ExtResource("43_tohs0")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm8_9" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1434855276]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 7440)
+texture = ExtResource("44_nnw6x")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm9" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=196390419]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 7920)
+texture = ExtResource("45_h4u7a")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
 position = Vector2(335, 48)
@@ -446,13 +605,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="VignetteA" type="Sprite2D" parent="UiKrams" unique_id=1204726196]
+visible = false
 texture_filter = 2
 scale = Vector2(2, 2)
 texture = ExtResource("34_jkyoy")
 
 [node name="VignetteB" type="Sprite2D" parent="UiKrams" unique_id=673280427]
+visible = false
 texture_filter = 2
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("34_jkyoy")
 
 [node name="UiDepth" type="RichTextLabel" parent="UiKrams" unique_id=66097322]
