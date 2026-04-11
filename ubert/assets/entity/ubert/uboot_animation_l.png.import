@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dffii5qibdf10"
-path="res://.godot/imported/uboot_placeholder_flip_grab.png-3fbf734cc259b3868f9bda42866e3c18.ctex"
+uid="uid://dusomso4e65xc"
+path="res://.godot/imported/uboot_animation_l.png-2cbf7c1d193d6158d39e1391aa23ba55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/uboot_placeholder_flip_grab.png"
-dest_files=["res://.godot/imported/uboot_placeholder_flip_grab.png-3fbf734cc259b3868f9bda42866e3c18.ctex"]
+source_file="res://assets/entity/ubert/uboot_animation_l.png"
+dest_files=["res://.godot/imported/uboot_animation_l.png-2cbf7c1d193d6158d39e1391aa23ba55.ctex"]
 
 [params]
 

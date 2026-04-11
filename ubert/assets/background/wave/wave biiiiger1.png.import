@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bghgon5vvwme6"
-path="res://.godot/imported/uboot_placeholder_flip.png-ad17349bcae1e047d64814914444411d.ctex"
+uid="uid://bwjkwe7q3d6ym"
+path="res://.godot/imported/wave biiiiger1.png-ac1edf144e88ec4d39ba64d37af31378.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/uboot_placeholder_flip.png"
-dest_files=["res://.godot/imported/uboot_placeholder_flip.png-ad17349bcae1e047d64814914444411d.ctex"]
+source_file="res://assets/background/wave/wave biiiiger1.png"
+dest_files=["res://.godot/imported/wave biiiiger1.png-ac1edf144e88ec4d39ba64d37af31378.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpdy3fpxmjxi1"
-path="res://.godot/imported/ubert-l.png-85d21f393c23bc1c4c4532d02b93db6c.ctex"
+uid="uid://bc5fnbpsag2sq"
+path="res://.godot/imported/wave biiiiger3.png-9b86b550a0c910286b658439f6453c8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/ubert-l.png"
-dest_files=["res://.godot/imported/ubert-l.png-85d21f393c23bc1c4c4532d02b93db6c.ctex"]
+source_file="res://assets/background/wave/wave biiiiger3.png"
+dest_files=["res://.godot/imported/wave biiiiger3.png-9b86b550a0c910286b658439f6453c8f.ctex"]
 
 [params]
 

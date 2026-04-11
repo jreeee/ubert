@@ -3,12 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://tm82x6tkqtsj" path="res://assets/background/last/ocean 1 deep.png" id="1_7g6sx"]
 [ext_resource type="Script" uid="uid://5aj5tpr0g2ul" path="res://scripts/main.gd" id="1_t2nud"]
 [ext_resource type="PackedScene" uid="uid://bwv5g1hqpdau5" path="res://scene/point_of_interest.tscn" id="2_ktmlt"]
+[ext_resource type="Texture2D" uid="uid://bwjkwe7q3d6ym" path="res://assets/background/wave/wave biiiiger1.png" id="2_sas3p"]
 [ext_resource type="Texture2D" uid="uid://b6fkf46v0bd88" path="res://assets/background/last/ocean 1&2 mix deep.png" id="2_t2nud"]
 [ext_resource type="Texture2D" uid="uid://bpup2fhqb0gi2" path="res://assets/background/last/ocean 2 deep.png" id="3_jkyoy"]
 [ext_resource type="Texture2D" uid="uid://bhd4dsi6mlrf5" path="res://assets/entity/poi.png" id="3_oxop7"]
+[ext_resource type="Texture2D" uid="uid://cqmhroy3wmc42" path="res://assets/background/wave/wave biiiiger2.png" id="3_ta4xs"]
+[ext_resource type="Texture2D" uid="uid://bc5fnbpsag2sq" path="res://assets/background/wave/wave biiiiger3.png" id="4_ghvb6"]
 [ext_resource type="Texture2D" uid="uid://csilh57t10tl0" path="res://assets/entity/item.png" id="4_gunnj"]
 [ext_resource type="Texture2D" uid="uid://de0mdkbr4xtjs" path="res://assets/background/last/ocean 2&3 mix deep.png" id="4_mawuw"]
 [ext_resource type="Texture2D" uid="uid://pran3yin1oe0" path="res://assets/background/last/ocean 3 deep.png" id="5_42gcl"]
+[ext_resource type="Texture2D" uid="uid://ddlrht83dcsd" path="res://assets/background/wave/wave biiiiger4.png" id="5_g6u61"]
 [ext_resource type="Script" uid="uid://csimm75jt7e68" path="res://scripts/character_body_2d.gd" id="5_j35ge"]
 [ext_resource type="PackedScene" uid="uid://dpn8wjkcfshdy" path="res://scene/start_menu.tscn" id="5_ktmlt"]
 [ext_resource type="Texture2D" uid="uid://b5crx4qj0rwi2" path="res://assets/background/last/ocean 3&4 mix deep.png" id="6_g8v4b"]
@@ -29,9 +33,6 @@
 [ext_resource type="Texture2D" uid="uid://bh8wxsa1xuwn2" path="res://assets/background/wave/wave1.png" id="19_ipxq3"]
 [ext_resource type="Texture2D" uid="uid://sq8evcbi3eog" path="res://assets/background/wave/wave2.png" id="20_rc1i6"]
 [ext_resource type="Texture2D" uid="uid://h7xtwvey4kkq" path="res://assets/background/wave/wave3.png" id="21_o0ehv"]
-[ext_resource type="Texture2D" uid="uid://bg824kpeudeo7" path="res://assets/background/wave/wave4.png" id="22_ub60f"]
-[ext_resource type="Texture2D" uid="uid://bghgon5vvwme6" path="res://assets/entity/uboot_placeholder_flip.png" id="29_jkyoy"]
-[ext_resource type="Texture2D" uid="uid://cjs1vxxj3npwv" path="res://assets/entity/uboot_placeholder.png" id="29_t2nud"]
 [ext_resource type="Texture2D" uid="uid://y0qi0ns0j1pl" path="res://assets/ui/vignette-1.png" id="30_k6k75"]
 [ext_resource type="Texture2D" uid="uid://cwqip0e0sl88q" path="res://assets/ui/vignette-2.png" id="31_hov2m"]
 [ext_resource type="Texture2D" uid="uid://cttlmqdqbv6c3" path="res://assets/ui/vignette-3.png" id="32_irv0p"]
@@ -43,13 +44,85 @@
 [ext_resource type="Texture2D" uid="uid://cb778rhyubb34" path="res://assets/ui/vignette-7.png" id="36_g6u61"]
 [ext_resource type="Texture2D" uid="uid://co5eqg5wmw7ht" path="res://assets/ui/vignette-8.png" id="37_ipxq3"]
 [ext_resource type="Texture2D" uid="uid://dhxv8jsp5snlu" path="res://assets/ui/vignette-9.png" id="38_rc1i6"]
+[ext_resource type="Texture2D" uid="uid://dusomso4e65xc" path="res://assets/entity/ubert/uboot_animation_l.png" id="42_sas3p"]
+[ext_resource type="Texture2D" uid="uid://b5jy8d5fmwg3a" path="res://assets/entity/ubert/ubert_bubbles_l.png" id="43_sas3p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
+
+[sub_resource type="Animation" id="Animation_ta4xs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("SpriteUbertRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SpriteUbertBubble:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ghvb6"]
+resource_name = "hubert_bub"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpriteUbertBubble:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_sas3p"]
+resource_name = "hubert_l"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteUbertRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_irv0p"]
+_data = {
+&"RESET": SubResource("Animation_ta4xs"),
+&"hubert_bub": SubResource("Animation_ghvb6"),
+&"hubert_l": SubResource("Animation_sas3p")
+}
 
 [node name="Main" type="Node2D" unique_id=1152862137]
 script = ExtResource("1_t2nud")
-tex_wave_1 = ExtResource("19_ipxq3")
-tex_wave_2 = ExtResource("20_rc1i6")
-tex_wave_3 = ExtResource("21_o0ehv")
-tex_wave_4 = ExtResource("22_ub60f")
+tex_wave_1 = ExtResource("2_sas3p")
+tex_wave_2 = ExtResource("3_ta4xs")
+tex_wave_3 = ExtResource("4_ghvb6")
+tex_wave_4 = ExtResource("5_g6u61")
 
 [node name="bg" type="Parallax2D" parent="." unique_id=1692096008]
 scroll_scale = Vector2(0.6, 0.6)
@@ -218,7 +291,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
 
 [node name="Btm_wave_l2" type="Sprite2D" parent="." unique_id=840376579]
-visible = false
 texture_filter = 1
 texture_repeat = 2
 position = Vector2(0, -13)
@@ -227,7 +299,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
 
 [node name="Btm_wave_l3" type="Sprite2D" parent="." unique_id=1056450676]
-visible = false
 texture_filter = 1
 position = Vector2(0, -9)
 texture = ExtResource("21_o0ehv")
@@ -264,18 +335,36 @@ vignette_8 = ExtResource("37_ipxq3")
 vignette_9 = ExtResource("38_rc1i6")
 
 [node name="SpriteUbertRight" type="Sprite2D" parent="Ubert" unique_id=2008927260]
-visible = false
-texture = ExtResource("29_jkyoy")
+texture = ExtResource("42_sas3p")
+hframes = 4
+
+[node name="SpriteUbertBubble" type="Sprite2D" parent="Ubert" unique_id=1088051772]
+texture = ExtResource("43_sas3p")
+hframes = 4
 
 [node name="Camera2D" type="Camera2D" parent="Ubert" unique_id=1759820412]
 
-[node name="SpriteUbertLeft" type="Sprite2D" parent="Ubert" unique_id=1184641007]
-texture = ExtResource("29_t2nud")
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ubert" unique_id=329119881]
-polygon = PackedVector2Array(-74, 4, -73, 22, -52, 43, -31, 53, 12, 54, 24, 49, 33, 64, 67, 64, 71, 40, 71, -13, 66, -21, 66, -38, 32, -38, 22, -18, 14, -23, 2, -24, -3, -40, -7, -44, -11, -44, -11, -64, -87, -64, -90, -61, -90, -50, -26, -50, -26, -44, -33, -44, -36, -42, -36, -24, -43, -22, -57, -14)
+position = Vector2(-16, 0)
+polygon = PackedVector2Array(-74, 4, -73, 22, -52, 43, -31, 53, 12, 54, 25, 49, 32, 64, 67, 64, 71, 40, 71, -13, 66, -21, 68, -38, 32, -38, 24, -18, 14, -23, 2, -24, -3, -40, -7, -44, -11, -44, -11, -64, -87, -64, -90, -61, -90, -50, -26, -50, -26, -44, -33, -44, -36, -42, -36, -24, -43, -22, -57, -14)
 
 [node name="Grabber" type="Area2D" parent="Ubert" unique_id=1626758614]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ubert/Grabber" unique_id=936283417]
+position = Vector2(-66, 53)
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_k6k75")
+
+[node name="MovAnim" type="AnimationPlayer" parent="Ubert" unique_id=1355448738]
+libraries/ = SubResource("AnimationLibrary_irv0p")
+
+[node name="BubbleAnim" type="AnimationPlayer" parent="Ubert" unique_id=111580251]
+root_node = NodePath("../MovAnim")
+libraries/ = SubResource("AnimationLibrary_irv0p")
+
+[node name="GrabAnim" type="AnimationPlayer" parent="Ubert" unique_id=62743442]
+root_node = NodePath("../MovAnim")
+libraries/ = SubResource("AnimationLibrary_irv0p")
 
 [node name="Walls" type="CanvasGroup" parent="." unique_id=296466816]
 position = Vector2(-299, 177)

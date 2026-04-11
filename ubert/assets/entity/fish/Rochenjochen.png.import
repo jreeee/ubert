@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgk0027m3gv7j"
-path="res://.godot/imported/ubert-r.png-3d5e2c9749ef6902d19bef93812acf9a.ctex"
+uid="uid://3pijdvr7ch4u"
+path="res://.godot/imported/Rochenjochen.png-9518e394c079b384500d77c86ba48a00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/ubert-r.png"
-dest_files=["res://.godot/imported/ubert-r.png-3d5e2c9749ef6902d19bef93812acf9a.ctex"]
+source_file="res://assets/entity/fish/Rochenjochen.png"
+dest_files=["res://.godot/imported/Rochenjochen.png-9518e394c079b384500d77c86ba48a00.ctex"]
 
 [params]
 

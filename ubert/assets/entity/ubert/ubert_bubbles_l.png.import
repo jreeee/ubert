@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cscedfpl8xtyl"
-path="res://.godot/imported/Jeliefisch.png-7530d0feb69cadbeb435d7c5ef9b36e3.ctex"
+uid="uid://b5jy8d5fmwg3a"
+path="res://.godot/imported/ubert_bubbles_l.png-ead9610458bccd4fd932e1341d057de0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/fish/Tiere/Jeliefisch.png"
-dest_files=["res://.godot/imported/Jeliefisch.png-7530d0feb69cadbeb435d7c5ef9b36e3.ctex"]
+source_file="res://assets/entity/ubert/ubert_bubbles_l.png"
+dest_files=["res://.godot/imported/ubert_bubbles_l.png-ead9610458bccd4fd932e1341d057de0.ctex"]
 
 [params]
 

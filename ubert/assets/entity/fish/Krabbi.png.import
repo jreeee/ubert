@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs73qqtty8fbo"
-path="res://.godot/imported/uboot_placeholder_grab.png-ee5a6365c6bba48e1cc55bfd3d38659e.ctex"
+uid="uid://6svcyhqlekc5"
+path="res://.godot/imported/Krabbi.png-a44018703e344bb080583f4f5c649941.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/uboot_placeholder_grab.png"
-dest_files=["res://.godot/imported/uboot_placeholder_grab.png-ee5a6365c6bba48e1cc55bfd3d38659e.ctex"]
+source_file="res://assets/entity/fish/Krabbi.png"
+dest_files=["res://.godot/imported/Krabbi.png-a44018703e344bb080583f4f5c649941.ctex"]
 
 [params]
 

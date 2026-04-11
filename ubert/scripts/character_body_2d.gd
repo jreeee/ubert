@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@onready var sprite_left : Sprite2D = get_node("SpriteUbertLeft")
+@onready var sprite_bubble : Sprite2D = get_node("SpriteUbertBubble")
 @onready var sprite_right : Sprite2D = get_node("SpriteUbertRight")
 @onready var hitbox : CollisionPolygon2D = get_node("CollisionPolygon2D")
 @onready var ui_canvas : Control = get_parent().get_node("UiKrams")
@@ -10,6 +10,11 @@ class_name Player extends CharacterBody2D
 @onready var grabber : Area2D = get_node("Grabber")
 @onready var vignette_tex_a : Sprite2D = ui_canvas.get_node("VignetteA")
 @onready var vignette_tex_b : Sprite2D = ui_canvas.get_node("VignetteB")
+
+@onready var mov_anim : AnimationPlayer = get_node("MovAnim")
+@onready var bubble_anim : AnimationPlayer = get_node("BubbleAnim")
+@onready var grab_anim : AnimationPlayer = get_node("GrabAnim")
+
 
 @export var vignette_0 : Texture2D
 @export var vignette_1 : Texture2D
@@ -50,6 +55,8 @@ var fade_t := 0.0
 var fading := false
 var zone_trigger := 0
 
+var mov_anim_state = "ubert_r"
+
 func _ready() -> void:
 	grabber.monitoring = true
 	grabber.monitorable = true
@@ -59,6 +66,7 @@ func _ready() -> void:
 	vignette_tex_a.texture = array_ving[ving_idx]
 	vignette_tex_a.modulate.a = 0
 	vignette_tex_b.modulate.a = 0
+	mov_anim.stop()
 func _grab() -> void:
 	if grabbable:
 		print("success")
@@ -163,7 +171,7 @@ func _process(delta: float) -> void:
 	# update UI
 	clamp(energy_status, 0.0, 100.0)
 	ui_depth.text = "[center]Depth: " + str(depth_status) + "/" + str(max_depth) + "[/center]"
-	ui_oxygen.text = "[center]O2: " + str("%3.1f" % oxygen_status) + "%[/center]"
+	ui_oxygen.text = "[center]O_2: " + str("%3.1f" % oxygen_status) + "%[/center]"
 	ui_energy.text = "[center]Energy: " + str("%3.1f" % energy_status) + "%[/center]"
 # mainly input handling
 
@@ -184,15 +192,21 @@ func _physics_process(delta: float) -> void:
 		# prevent excessive tilt
 		if rot > -0.6 and rot < 0.6:
 			rotation = rot
+		elif rot < (- PI + 0.6) or rot >  (PI - 0.6):
+			rotation = rot
+
 #	var local_coords = sprite.rotated
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Vector2.RIGHT.rotated(rotation)
 	
+	var direction := Vector2.RIGHT.rotated(rotation)
+	if abs(rotation) > 2.5 and not is_sprite_left:
+				direction.x *= -1
 	# axis movement inputs
 	# respects the local rotation
 	var direction_h := Input.get_axis("ui_left", "ui_right")
 	var fwd := direction * horizontal_speed * direction_h
+	
 	# uses global y axis
 	var direction_v := Input.get_axis("ui_up", "ui_down")
 	var hrz := Vector2(0, vertical_speed * direction_v)
@@ -204,27 +218,25 @@ func _physics_process(delta: float) -> void:
 			target_velocity.y = 0
 		#print(target_velocity)
 		velocity = velocity.move_toward(target_velocity, acceleration * delta)
+		mov_anim.play("hubert_l")
+		sprite_bubble.modulate.a = 1.0
+		bubble_anim.play("hubert_bub")
 		if energy_status < 0.2:
 			energy_status = 0.0
 		else:
-			pass
-			#energy_status -= abs(velocity.length()) * 0.0002
+			energy_status -= abs(velocity.length()) * 0.0002
 	else:
 		# decelerate
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
+		mov_anim.stop()
+		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 3)
 	#print(velocity)
 	if velocity.x > 0 and is_sprite_left:
+		scale.x = -1
 		is_sprite_left = false
-		sprite_left.visible = false
-		sprite_right.visible = true
-		rotation = -rotation
-		hitbox.scale.x *= -1
 
 	elif velocity.x < 0 and not is_sprite_left:
+		scale.x = 1
 		is_sprite_left = true
-		sprite_right.visible = false
-		sprite_left.visible = true
-		rotation = -rotation
-		hitbox.scale.x *= -1
-
+	
 	move_and_slide()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjs1vxxj3npwv"
-path="res://.godot/imported/uboot_placeholder.png-d26531503587155ff356a80959e0691f.ctex"
+uid="uid://dffii5qibdf10"
+path="res://.godot/imported/uboot_placeholder_flip_grab.png-5d65152fe58bce1cbb16cba4c1b94191.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/uboot_placeholder.png"
-dest_files=["res://.godot/imported/uboot_placeholder.png-d26531503587155ff356a80959e0691f.ctex"]
+source_file="res://assets/entity/ubert/uboot_placeholder_flip_grab.png"
+dest_files=["res://.godot/imported/uboot_placeholder_flip_grab.png-5d65152fe58bce1cbb16cba4c1b94191.ctex"]
 
 [params]
 

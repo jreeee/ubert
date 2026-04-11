@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq0dat1lssiq0"
-path="res://.godot/imported/Hübscherfisch.png-7b06041d4f8a2417014578e2c401819e.ctex"
+uid="uid://cpdy3fpxmjxi1"
+path="res://.godot/imported/ubert-l.png-6d50c423ea3fbe8be4355cf166a1515e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/fish/Tiere/Hübscherfisch.png"
-dest_files=["res://.godot/imported/Hübscherfisch.png-7b06041d4f8a2417014578e2c401819e.ctex"]
+source_file="res://assets/old/ubert-l.png"
+dest_files=["res://.godot/imported/ubert-l.png-6d50c423ea3fbe8be4355cf166a1515e.ctex"]
 
 [params]
 
