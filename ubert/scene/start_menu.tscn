@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dpn8wjkcfshdy"]
 
+[ext_resource type="Script" uid="uid://c6oavnxe8nkf" path="res://scripts/start_menu.gd" id="1_e43t8"]
 [ext_resource type="PackedScene" uid="uid://crlryfpknrxyc" path="res://scene/box.tscn" id="1_x6qk2"]
 
 [node name="StartMenu" type="Node2D" unique_id=2056195777]
+script = ExtResource("1_e43t8")
 
 [node name="1_opt" parent="." unique_id=1868191039 instance=ExtResource("1_x6qk2")]
 desc = "[center][b]Options[/b][/center]"
@@ -14,6 +16,7 @@ desc = "[center][b]Credits[/b][/center]"
 [node name="3_start" parent="." unique_id=768170362 instance=ExtResource("1_x6qk2")]
 position = Vector2(0, 216)
 desc = "[center][b]Start Game[/b][/center]"
+btn_name = "start"
 
 [node name="1_1_sound" parent="." unique_id=1810755735 instance=ExtResource("1_x6qk2")]
 visible = false
@@ -27,4 +30,22 @@ desc = "Options"
 [node name="1_3_controls" parent="." unique_id=1606263592 instance=ExtResource("1_x6qk2")]
 visible = false
 position = Vector2(0, 216)
+desc = "Options"
+
+[node name="2_1_engine" parent="." unique_id=1452060186 instance=ExtResource("1_x6qk2")]
+visible = false
+desc = "Options"
+
+[node name="1_1_1_master" parent="." unique_id=80151550 instance=ExtResource("1_x6qk2")]
+visible = false
+desc = "Options"
+
+[node name="1_2_video2" parent="." unique_id=1500700104 instance=ExtResource("1_x6qk2")]
+visible = false
+position = Vector2(0, 208)
+desc = "Options"
+
+[node name="1_1_2_sfx" parent="." unique_id=1000508719 instance=ExtResource("1_x6qk2")]
+visible = false
+position = Vector2(0, 208)
 desc = "Options"

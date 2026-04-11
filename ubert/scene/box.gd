@@ -8,7 +8,7 @@ class_name Box extends Node2D
 @export var tex_gray : Texture2D
 
 @export var desc : String
-@export var poi_name : String
+@export var btn_name : String
 
 var is_player_inside := false
 
@@ -23,12 +23,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_player_inside and Input.is_action_just_pressed("ui_select"):
-		print("in Option " + poi_name)
+		print("in Option " + btn_name)
 		select()
 
 func select() -> void:
 	visited = true
 	$Sprite2D.texture = tex_select
+	emit_signal("option_" + name)
 		
 func _on_area_2d_body_entered(body):
 	if body.name == "Ubert":
