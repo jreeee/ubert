@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgk0027m3gv7j"
-path="res://.godot/imported/ubert.png-7fba12a83357494d2620578b065f55e8.ctex"
+uid="uid://db1ohmeulohsf"
+path="res://.godot/imported/floor.png-06f35c0eabca7575c30c56f6f1a08967.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/ubert.png"
-dest_files=["res://.godot/imported/ubert.png-7fba12a83357494d2620578b065f55e8.ctex"]
+source_file="res://assets/background/floor.png"
+dest_files=["res://.godot/imported/floor.png-06f35c0eabca7575c30c56f6f1a08967.ctex"]
 
 [params]
 
