@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dpn8wjkcfshdy"]
+
+[ext_resource type="PackedScene" uid="uid://crlryfpknrxyc" path="res://scene/box.tscn" id="1_x6qk2"]
+
+[node name="StartMenu" type="Node2D" unique_id=2056195777]
+
+[node name="1_opt" parent="." unique_id=1868191039 instance=ExtResource("1_x6qk2")]
+desc = "[center][b]Options[/b][/center]"
+
+[node name="2_cred" parent="." unique_id=546857028 instance=ExtResource("1_x6qk2")]
+position = Vector2(0, 104)
+desc = "[center][b]Credits[/b][/center]"
+
+[node name="3_start" parent="." unique_id=768170362 instance=ExtResource("1_x6qk2")]
+position = Vector2(0, 216)
+desc = "[center][b]Start Game[/b][/center]"
+
+[node name="1_1_sound" parent="." unique_id=1810755735 instance=ExtResource("1_x6qk2")]
+visible = false
+desc = "Options"
+
+[node name="1_2_video" parent="." unique_id=2032513529 instance=ExtResource("1_x6qk2")]
+visible = false
+position = Vector2(0, 104)
+desc = "Options"
+
+[node name="1_3_controls" parent="." unique_id=1606263592 instance=ExtResource("1_x6qk2")]
+visible = false
+position = Vector2(0, 216)
+desc = "Options"

@@ -1,17 +1,22 @@
 [gd_scene format=3 uid="uid://cfe4epaksapw3"]
 
 [ext_resource type="Texture2D" uid="uid://cymc7jmat1vwf" path="res://assets/background/btm.png" id="1_c7c3h"]
+[ext_resource type="Script" uid="uid://5aj5tpr0g2ul" path="res://scripts/main.gd" id="1_k1mgw"]
 [ext_resource type="Texture2D" uid="uid://cud63hj4atr5a" path="res://assets/background/top.png" id="2_31dbv"]
 [ext_resource type="Texture2D" uid="uid://dwj5nxp4eeu7x" path="res://assets/background/mid.png" id="3_muqyd"]
 [ext_resource type="Script" uid="uid://csimm75jt7e68" path="res://scripts/character_body_2d.gd" id="4_muqyd"]
 [ext_resource type="Texture2D" uid="uid://cgk0027m3gv7j" path="res://assets/entity/ubert-r.png" id="5_jotk5"]
+[ext_resource type="PackedScene" uid="uid://bwv5g1hqpdau5" path="res://scene/point_of_interest.tscn" id="5_mu8vk"]
 [ext_resource type="Texture2D" uid="uid://cpdy3fpxmjxi1" path="res://assets/entity/ubert-l.png" id="6_jotk5"]
+[ext_resource type="Texture2D" uid="uid://bhd4dsi6mlrf5" path="res://assets/entity/poi.png" id="6_l0hhb"]
+[ext_resource type="Texture2D" uid="uid://csilh57t10tl0" path="res://assets/entity/item.png" id="6_mu8vk"]
 [ext_resource type="Texture2D" uid="uid://cpuo1tcnu5g3y" path="res://assets/background/wall-l.png" id="7_sol34"]
 [ext_resource type="Texture2D" uid="uid://bj2k7tyheccde" path="res://assets/background/wall-r.png" id="8_3c50b"]
 [ext_resource type="Texture2D" uid="uid://db1ohmeulohsf" path="res://assets/background/floor.png" id="9_fetjp"]
 [ext_resource type="Texture2D" uid="uid://cnpgwoo7swdtt" path="res://assets/background/fg_misc.png" id="10_3c50b"]
 
-[node name="scene" type="Node2D" unique_id=845916023]
+[node name="test_scene" type="Node2D" unique_id=845916023]
+script = ExtResource("1_k1mgw")
 
 [node name="bg" type="Parallax2D" parent="." unique_id=652465097]
 scroll_scale = Vector2(0.6, 0.6)
@@ -54,20 +59,32 @@ texture = ExtResource("2_31dbv")
 position = Vector2(-320, 541)
 texture = ExtResource("3_muqyd")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=435564413]
+[node name="Node2D" parent="." unique_id=1868191039 instance=ExtResource("5_mu8vk")]
+position = Vector2(384, 160)
+sprite_tex = ExtResource("6_l0hhb")
+desc = "awesome node, fun stuff"
+poi_name = "gaming"
+
+[node name="Node2D2" parent="." unique_id=1133875959 instance=ExtResource("5_mu8vk")]
+position = Vector2(768, 320)
+sprite_tex = ExtResource("6_mu8vk")
+desc = "another awesome node, fun stuff"
+poi_name = "gaming 2"
+
+[node name="Ubert" type="CharacterBody2D" parent="." unique_id=435564413]
 motion_mode = 1
 script = ExtResource("4_muqyd")
 
-[node name="SpriteUbertRight" type="Sprite2D" parent="CharacterBody2D" unique_id=1800262484]
+[node name="SpriteUbertRight" type="Sprite2D" parent="Ubert" unique_id=1800262484]
 texture = ExtResource("5_jotk5")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1891560037]
+[node name="Camera2D" type="Camera2D" parent="Ubert" unique_id=1891560037]
 
-[node name="SpriteUbertLeft" type="Sprite2D" parent="CharacterBody2D" unique_id=876409656]
+[node name="SpriteUbertLeft" type="Sprite2D" parent="Ubert" unique_id=876409656]
 visible = false
 texture = ExtResource("6_jotk5")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D" unique_id=1760437472]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ubert" unique_id=1760437472]
 polygon = PackedVector2Array(-76, -21, -76, 19, -64, 27, 58, 32, 77, 17, 75, -12, 55, -25, 33, -25, 21, -36, -30, -36, -41, -28, -66, -28)
 
 [node name="Walls" type="CanvasGroup" parent="." unique_id=107205284]

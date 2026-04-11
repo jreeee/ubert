@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @onready var sprite_left : Sprite2D = get_node("SpriteUbertLeft")
 @onready var sprite_right : Sprite2D = get_node("SpriteUbertRight")
@@ -11,9 +11,6 @@ var deceleration := 400.0
 var is_sprite_left := true
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	#if not is_on_floor():
-	#	velocity += get_gravity() * delta
 
 	var direction_r := Input.get_axis("ui_rotate_left", "ui_rotate_right")
 	if direction_r:
@@ -39,12 +36,12 @@ func _physics_process(delta: float) -> void:
 		# do not go above the water line
 		if position.y < 0 and target_velocity.y < 0:
 			target_velocity.y = 0
-		print(target_velocity)
+		#print(target_velocity)
 		velocity = velocity.move_toward(target_velocity, acceleration * delta)
 	else:
 		# decelerate
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
-	print(velocity)
+	#print(velocity)
 	if velocity.x > 0 and is_sprite_left:
 		is_sprite_left = false
 		sprite_left.visible = false

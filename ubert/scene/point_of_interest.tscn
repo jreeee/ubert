@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bwv5g1hqpdau5"]
+
+[ext_resource type="Texture2D" uid="uid://bhd4dsi6mlrf5" path="res://assets/entity/poi.png" id="1_ajegx"]
+[ext_resource type="Script" uid="uid://bjotkvh0tle8c" path="res://scripts/point_of_interest.gd" id="1_uvopk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvopk"]
+
+[node name="Node2D" type="Node2D" unique_id=1868191039]
+script = ExtResource("1_uvopk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=473253300]
+texture = ExtResource("1_ajegx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1128845945]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=193377593]
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_uvopk")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
