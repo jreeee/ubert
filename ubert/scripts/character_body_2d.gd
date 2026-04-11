@@ -7,7 +7,7 @@ class_name Player extends CharacterBody2D
 @onready var ui_depth : RichTextLabel = ui_canvas.get_node("UiDepth")
 @onready var ui_oxygen : RichTextLabel = ui_canvas.get_node("UiOxygen")
 @onready var ui_energy : RichTextLabel = ui_canvas.get_node("UiEnergy")
-#
+@onready var grabber : Area2D = get_node("Grabber")
 
 var horizontal_speed := 200.0
 var vertical_speed := 50.0
@@ -26,6 +26,10 @@ var alarm_d1 := false
 var alarm_d2 := false
 var alarm_d3 := false
 
+var grabber_cooldown = 2.0
+var grabber_state = 0.0
+
+#wfunc
 
 # updating states
 func _process(delta: float) -> void:

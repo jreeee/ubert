@@ -46,14 +46,6 @@ scroll_scale = Vector2(0.6, 0.6)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="bg" unique_id=1637706027]
 
-[node name="Btm_sky2" type="Sprite2D" parent="bg/CanvasGroup" unique_id=650523312]
-texture_filter = 1
-texture_repeat = 3
-position = Vector2(0, 240)
-texture = ExtResource("18_g6u61")
-region_enabled = true
-region_rect = Rect2(0, 0, 3840, 480)
-
 [node name="Btm1_2" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1063898882]
 texture_filter = 1
 texture_repeat = 3
@@ -182,7 +174,16 @@ texture = ExtResource("17_ghvb6")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 480)
 
-[node name="Btm_sky" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1553279880]
+[node name="Btm1_nopara" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1178386032]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 370.5)
+scale = Vector2(1, 0.5104167)
+texture = ExtResource("1_7g6sx")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Btm_sky" type="Sprite2D" parent="." unique_id=1553279880]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(0, -240)
@@ -190,10 +191,18 @@ texture = ExtResource("18_g6u61")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 480)
 
+[node name="Btm_1" type="Sprite2D" parent="." unique_id=792665174]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 237)
+texture = ExtResource("1_7g6sx")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
 [node name="Btm_wave_l1" type="Sprite2D" parent="." unique_id=1422947387]
 texture_filter = 1
 texture_repeat = 3
-position = Vector2(0, -10)
+position = Vector2(0, -18)
 texture = ExtResource("19_ipxq3")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
@@ -201,7 +210,7 @@ region_rect = Rect2(0, 0, 3840, 32)
 [node name="Btm_wave_l2" type="Sprite2D" parent="." unique_id=840376579]
 texture_filter = 1
 texture_repeat = 3
-position = Vector2(0, -5)
+position = Vector2(0, -13)
 texture = ExtResource("20_rc1i6")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
@@ -209,26 +218,10 @@ region_rect = Rect2(0, 0, 3840, 32)
 [node name="Btm_wave_l3" type="Sprite2D" parent="." unique_id=1056450676]
 texture_filter = 1
 texture_repeat = 3
-position = Vector2(0, -1)
+position = Vector2(0, -9)
 texture = ExtResource("21_o0ehv")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
-
-[node name="Btm1_nopara" type="Sprite2D" parent="." unique_id=1178386032]
-texture_filter = 1
-texture_repeat = 3
-position = Vector2(0, 246)
-texture = ExtResource("1_7g6sx")
-region_enabled = true
-region_rect = Rect2(0, 0, 3840, 480)
-
-[node name="Btm2_nopara" type="Sprite2D" parent="." unique_id=1343952474]
-texture_filter = 1
-texture_repeat = 3
-position = Vector2(0, 492)
-texture = ExtResource("1_7g6sx")
-region_enabled = true
-region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
 position = Vector2(-8, 504)
@@ -243,7 +236,6 @@ desc = "another awesome node, fun stuff"
 poi_name = "gaming 2"
 
 [node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
-visible = false
 position = Vector2(335, 48)
 
 [node name="Ubert" type="CharacterBody2D" parent="." unique_id=2042117063]
@@ -261,6 +253,8 @@ texture = ExtResource("29_t2nud")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ubert" unique_id=329119881]
 polygon = PackedVector2Array(-74, 4, -73, 22, -52, 43, -31, 53, 12, 54, 24, 49, 33, 64, 67, 64, 71, 40, 71, -13, 66, -21, 66, -38, 32, -38, 22, -18, 14, -23, 2, -24, -3, -40, -7, -44, -11, -44, -11, -64, -87, -64, -90, -61, -90, -50, -26, -50, -26, -44, -33, -44, -36, -42, -36, -24, -43, -22, -57, -14)
+
+[node name="Grabber" type="Area2D" parent="Ubert" unique_id=1626758614]
 
 [node name="Walls" type="CanvasGroup" parent="." unique_id=296466816]
 position = Vector2(-299, 177)
@@ -326,7 +320,7 @@ texture = ExtResource("32_t2nud")
 centered = false
 
 [node name="Sprite2D14" type="Sprite2D" parent="fg" unique_id=443835841]
-position = Vector2(-69, 401)
+position = Vector2(-64, 410)
 texture = ExtResource("32_t2nud")
 centered = false
 
