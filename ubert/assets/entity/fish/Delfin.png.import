@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7taqyjd2cck5"
-path="res://.godot/imported/Delfin.png-7b9b934ec358ae48a73e031541364e5f.ctex"
+path="res://.godot/imported/Delfin.png-9200115137b07ea5771da39937d42fe0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/entity/fish/Tiere/Delfin.png"
-dest_files=["res://.godot/imported/Delfin.png-7b9b934ec358ae48a73e031541364e5f.ctex"]
+source_file="res://assets/entity/fish/Delfin.png"
+dest_files=["res://.godot/imported/Delfin.png-9200115137b07ea5771da39937d42fe0.ctex"]
 
 [params]
 

@@ -2,10 +2,12 @@ class_name Player extends CharacterBody2D
 
 @onready var sprite_left : Sprite2D = get_node("SpriteUbertLeft")
 @onready var sprite_right : Sprite2D = get_node("SpriteUbertRight")
+@onready var hitbox : CollisionPolygon2D = get_node("CollisionPolygon2D")
 @onready var ui_canvas : Control = get_parent().get_node("UiKrams")
 @onready var ui_depth : RichTextLabel = ui_canvas.get_node("UiDepth")
 @onready var ui_oxygen : RichTextLabel = ui_canvas.get_node("UiOxygen")
 @onready var ui_energy : RichTextLabel = ui_canvas.get_node("UiEnergy")
+#
 
 var horizontal_speed := 200.0
 var vertical_speed := 50.0
@@ -34,7 +36,7 @@ func _process(delta: float) -> void:
 	if oxygen_status < 0:
 		print("Game Over")
 	print(position.y)
-	if position.y < 0 and oxygen_status < 100:
+	if position.y < 20 and oxygen_status < 100:
 		oxygen_status = clamp(oxygen_status + 2 * delta, 0.0, 100.0)
 	
 	# --- Grace ---
@@ -111,9 +113,13 @@ func _physics_process(delta: float) -> void:
 		sprite_left.visible = false
 		sprite_right.visible = true
 		rotation = -rotation
+		hitbox.scale.x *= -1
+
 	elif velocity.x < 0 and not is_sprite_left:
 		is_sprite_left = true
 		sprite_right.visible = false
 		sprite_left.visible = true
 		rotation = -rotation
+		hitbox.scale.x *= -1
+
 	move_and_slide()

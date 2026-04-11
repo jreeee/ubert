@@ -12,12 +12,9 @@
 [ext_resource type="Script" uid="uid://csimm75jt7e68" path="res://scripts/character_body_2d.gd" id="5_j35ge"]
 [ext_resource type="PackedScene" uid="uid://dpn8wjkcfshdy" path="res://scene/start_menu.tscn" id="5_ktmlt"]
 [ext_resource type="Texture2D" uid="uid://b5crx4qj0rwi2" path="res://assets/background/last/ocean 3&4 mix deep.png" id="6_g8v4b"]
-[ext_resource type="Texture2D" uid="uid://cgk0027m3gv7j" path="res://assets/entity/ubert-r.png" id="6_kfbl3"]
-[ext_resource type="Texture2D" uid="uid://cpdy3fpxmjxi1" path="res://assets/entity/ubert-l.png" id="7_3u5es"]
 [ext_resource type="Texture2D" uid="uid://drsrb2jskhdwm" path="res://assets/background/last/ocean 4 deep.png" id="7_up2ny"]
 [ext_resource type="Texture2D" uid="uid://8uj48v2vxgtn" path="res://assets/background/last/ocean 4&5 mix deep.png" id="8_28jen"]
 [ext_resource type="Texture2D" uid="uid://xwkluv18d4de" path="res://assets/background/tmp-wall-layout-fullsize.png" id="8_60efd"]
-[ext_resource type="Texture2D" uid="uid://cnpgwoo7swdtt" path="res://assets/background/fg_misc.png" id="9_ow60o"]
 [ext_resource type="Texture2D" uid="uid://ylwplavoak85" path="res://assets/background/last/ocean 5 deep.png" id="9_tlon1"]
 [ext_resource type="Texture2D" uid="uid://w70wqi185kue" path="res://assets/background/last/ocean 5&6 mix deep.png" id="10_328os"]
 [ext_resource type="Texture2D" uid="uid://28nn6881jqdm" path="res://assets/background/last/ocean 6 deep.png" id="11_hen5n"]
@@ -33,6 +30,9 @@
 [ext_resource type="Texture2D" uid="uid://sq8evcbi3eog" path="res://assets/background/wave/wave2.png" id="20_rc1i6"]
 [ext_resource type="Texture2D" uid="uid://h7xtwvey4kkq" path="res://assets/background/wave/wave3.png" id="21_o0ehv"]
 [ext_resource type="Texture2D" uid="uid://bg824kpeudeo7" path="res://assets/background/wave/wave4.png" id="22_ub60f"]
+[ext_resource type="Texture2D" uid="uid://bghgon5vvwme6" path="res://assets/entity/uboot_placeholder_flip.png" id="29_jkyoy"]
+[ext_resource type="Texture2D" uid="uid://cjs1vxxj3npwv" path="res://assets/entity/uboot_placeholder.png" id="29_t2nud"]
+[ext_resource type="Texture2D" uid="uid://j8jd3dmtkqpf" path="res://assets/entity/fish/jellyfish.png" id="32_t2nud"]
 
 [node name="Main" type="Node2D" unique_id=1152862137]
 script = ExtResource("1_t2nud")
@@ -190,22 +190,6 @@ texture = ExtResource("18_g6u61")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 480)
 
-[node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
-position = Vector2(-8, 504)
-sprite_tex = ExtResource("4_gunnj")
-desc = "awesome node, fun stuff"
-poi_name = "gaming"
-
-[node name="Node2D2" parent="." unique_id=1190652902 instance=ExtResource("2_ktmlt")]
-position = Vector2(112, 848)
-sprite_tex = ExtResource("3_oxop7")
-desc = "another awesome node, fun stuff"
-poi_name = "gaming 2"
-
-[node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
-visible = false
-position = Vector2(335, 48)
-
 [node name="Btm_wave_l1" type="Sprite2D" parent="." unique_id=1422947387]
 texture_filter = 1
 texture_repeat = 3
@@ -230,7 +214,7 @@ texture = ExtResource("21_o0ehv")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
 
-[node name="Btm1" type="Sprite2D" parent="." unique_id=1178386032]
+[node name="Btm1_nopara" type="Sprite2D" parent="." unique_id=1178386032]
 texture_filter = 1
 texture_repeat = 3
 position = Vector2(0, 246)
@@ -238,27 +222,51 @@ texture = ExtResource("1_7g6sx")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 480)
 
+[node name="Btm2_nopara" type="Sprite2D" parent="." unique_id=1343952474]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(0, 492)
+texture = ExtResource("1_7g6sx")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 480)
+
+[node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
+position = Vector2(-8, 504)
+sprite_tex = ExtResource("4_gunnj")
+desc = "awesome node, fun stuff"
+poi_name = "gaming"
+
+[node name="Node2D2" parent="." unique_id=1190652902 instance=ExtResource("2_ktmlt")]
+position = Vector2(112, 848)
+sprite_tex = ExtResource("3_oxop7")
+desc = "another awesome node, fun stuff"
+poi_name = "gaming 2"
+
+[node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
+visible = false
+position = Vector2(335, 48)
+
 [node name="Ubert" type="CharacterBody2D" parent="." unique_id=2042117063]
 motion_mode = 1
 script = ExtResource("5_j35ge")
 
 [node name="SpriteUbertRight" type="Sprite2D" parent="Ubert" unique_id=2008927260]
-texture = ExtResource("6_kfbl3")
+visible = false
+texture = ExtResource("29_jkyoy")
 
 [node name="Camera2D" type="Camera2D" parent="Ubert" unique_id=1759820412]
 
 [node name="SpriteUbertLeft" type="Sprite2D" parent="Ubert" unique_id=1184641007]
-visible = false
-texture = ExtResource("7_3u5es")
+texture = ExtResource("29_t2nud")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ubert" unique_id=329119881]
-polygon = PackedVector2Array(-76, -21, -76, 19, -64, 27, 58, 32, 77, 17, 75, -12, 55, -25, 33, -25, 21, -36, -30, -36, -41, -28, -66, -28)
+polygon = PackedVector2Array(-74, 4, -73, 22, -52, 43, -31, 53, 12, 54, 24, 49, 33, 64, 67, 64, 71, 40, 71, -13, 66, -21, 66, -38, 32, -38, 22, -18, 14, -23, 2, -24, -3, -40, -7, -44, -11, -44, -11, -64, -87, -64, -90, -61, -90, -50, -26, -50, -26, -44, -33, -44, -36, -42, -36, -24, -43, -22, -57, -14)
 
 [node name="Walls" type="CanvasGroup" parent="." unique_id=296466816]
 position = Vector2(-299, 177)
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls" unique_id=1124782417]
-position = Vector2(408, 2171)
+position = Vector2(403, 2127)
 texture = ExtResource("8_60efd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls" unique_id=1358161559]
@@ -277,28 +285,54 @@ polygon = PackedVector2Array(1065.7112, 196.91516, 1068.7806, 369.90674, 1136.68
 [node name="fg" type="Parallax2D" parent="." unique_id=1816066402]
 scroll_scale = Vector2(1.5, 1.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="fg" unique_id=983403948]
-texture = ExtResource("9_ow60o")
+[node name="Sprite2D6" type="Sprite2D" parent="fg" unique_id=1898951772]
+position = Vector2(-90, 136)
+texture = ExtResource("32_t2nud")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="fg" unique_id=859906959]
-position = Vector2(-641, 584)
-texture = ExtResource("9_ow60o")
+[node name="Sprite2D7" type="Sprite2D" parent="fg" unique_id=1455133578]
+position = Vector2(38, 120)
+texture = ExtResource("32_t2nud")
 centered = false
 
-[node name="Sprite2D3" type="Sprite2D" parent="fg" unique_id=1797553019]
-position = Vector2(441, 194)
-texture = ExtResource("9_ow60o")
+[node name="Sprite2D8" type="Sprite2D" parent="fg" unique_id=1297480477]
+position = Vector2(24, 184)
+texture = ExtResource("32_t2nud")
 centered = false
 
-[node name="Sprite2D4" type="Sprite2D" parent="fg" unique_id=2134814105]
-position = Vector2(-521, 264)
-texture = ExtResource("9_ow60o")
+[node name="Sprite2D9" type="Sprite2D" parent="fg" unique_id=1022774946]
+position = Vector2(-78, 208)
+texture = ExtResource("32_t2nud")
 centered = false
 
-[node name="Sprite2D5" type="Sprite2D" parent="fg" unique_id=2029408821]
-position = Vector2(0, 415)
-texture = ExtResource("9_ow60o")
+[node name="Sprite2D10" type="Sprite2D" parent="fg" unique_id=1845201519]
+position = Vector2(-156, 192)
+texture = ExtResource("32_t2nud")
+centered = false
+
+[node name="Sprite2D11" type="Sprite2D" parent="fg" unique_id=502053015]
+position = Vector2(-113, 305)
+texture = ExtResource("32_t2nud")
+centered = false
+
+[node name="Sprite2D12" type="Sprite2D" parent="fg" unique_id=1662472119]
+position = Vector2(79, 305)
+texture = ExtResource("32_t2nud")
+centered = false
+
+[node name="Sprite2D13" type="Sprite2D" parent="fg" unique_id=29010557]
+position = Vector2(49, 393)
+texture = ExtResource("32_t2nud")
+centered = false
+
+[node name="Sprite2D14" type="Sprite2D" parent="fg" unique_id=443835841]
+position = Vector2(-69, 401)
+texture = ExtResource("32_t2nud")
+centered = false
+
+[node name="Sprite2D15" type="Sprite2D" parent="fg" unique_id=680848157]
+position = Vector2(-171, 377)
+texture = ExtResource("32_t2nud")
 centered = false
 
 [node name="UiKrams" type="Control" parent="." unique_id=516229422]
