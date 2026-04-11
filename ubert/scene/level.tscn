@@ -32,7 +32,17 @@
 [ext_resource type="Texture2D" uid="uid://bg824kpeudeo7" path="res://assets/background/wave/wave4.png" id="22_ub60f"]
 [ext_resource type="Texture2D" uid="uid://bghgon5vvwme6" path="res://assets/entity/uboot_placeholder_flip.png" id="29_jkyoy"]
 [ext_resource type="Texture2D" uid="uid://cjs1vxxj3npwv" path="res://assets/entity/uboot_placeholder.png" id="29_t2nud"]
+[ext_resource type="Texture2D" uid="uid://y0qi0ns0j1pl" path="res://assets/ui/vignette-1.png" id="30_k6k75"]
+[ext_resource type="Texture2D" uid="uid://cwqip0e0sl88q" path="res://assets/ui/vignette-2.png" id="31_hov2m"]
+[ext_resource type="Texture2D" uid="uid://cttlmqdqbv6c3" path="res://assets/ui/vignette-3.png" id="32_irv0p"]
 [ext_resource type="Texture2D" uid="uid://j8jd3dmtkqpf" path="res://assets/entity/fish/jellyfish.png" id="32_t2nud"]
+[ext_resource type="Texture2D" uid="uid://dc1rseifca8fl" path="res://assets/ui/vignette-4.png" id="33_sas3p"]
+[ext_resource type="Texture2D" uid="uid://das1b55kkc88s" path="res://assets/ui/vignette-0.png" id="34_jkyoy"]
+[ext_resource type="Texture2D" uid="uid://bd5rfjg6vuqof" path="res://assets/ui/vignette-5.png" id="34_ta4xs"]
+[ext_resource type="Texture2D" uid="uid://besvxqya5ksqj" path="res://assets/ui/vignette-6.png" id="35_ghvb6"]
+[ext_resource type="Texture2D" uid="uid://cb778rhyubb34" path="res://assets/ui/vignette-7.png" id="36_g6u61"]
+[ext_resource type="Texture2D" uid="uid://co5eqg5wmw7ht" path="res://assets/ui/vignette-8.png" id="37_ipxq3"]
+[ext_resource type="Texture2D" uid="uid://dhxv8jsp5snlu" path="res://assets/ui/vignette-9.png" id="38_rc1i6"]
 
 [node name="Main" type="Node2D" unique_id=1152862137]
 script = ExtResource("1_t2nud")
@@ -201,23 +211,24 @@ region_rect = Rect2(0, 0, 3840, 480)
 
 [node name="Btm_wave_l1" type="Sprite2D" parent="." unique_id=1422947387]
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, -18)
 texture = ExtResource("19_ipxq3")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
 
 [node name="Btm_wave_l2" type="Sprite2D" parent="." unique_id=840376579]
+visible = false
 texture_filter = 1
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(0, -13)
 texture = ExtResource("20_rc1i6")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 32)
 
 [node name="Btm_wave_l3" type="Sprite2D" parent="." unique_id=1056450676]
+visible = false
 texture_filter = 1
-texture_repeat = 3
 position = Vector2(0, -9)
 texture = ExtResource("21_o0ehv")
 region_enabled = true
@@ -241,6 +252,16 @@ position = Vector2(335, 48)
 [node name="Ubert" type="CharacterBody2D" parent="." unique_id=2042117063]
 motion_mode = 1
 script = ExtResource("5_j35ge")
+vignette_0 = ExtResource("34_jkyoy")
+vignette_1 = ExtResource("30_k6k75")
+vignette_2 = ExtResource("31_hov2m")
+vignette_3 = ExtResource("32_irv0p")
+vignette_4 = ExtResource("33_sas3p")
+vignette_5 = ExtResource("34_ta4xs")
+vignette_6 = ExtResource("35_ghvb6")
+vignette_7 = ExtResource("36_g6u61")
+vignette_8 = ExtResource("37_ipxq3")
+vignette_9 = ExtResource("38_rc1i6")
 
 [node name="SpriteUbertRight" type="Sprite2D" parent="Ubert" unique_id=2008927260]
 visible = false
@@ -334,6 +355,16 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="VignetteA" type="Sprite2D" parent="UiKrams" unique_id=1204726196]
+texture_filter = 2
+scale = Vector2(2, 2)
+texture = ExtResource("34_jkyoy")
+
+[node name="VignetteB" type="Sprite2D" parent="UiKrams" unique_id=673280427]
+texture_filter = 2
+scale = Vector2(4, 4)
+texture = ExtResource("34_jkyoy")
 
 [node name="UiDepth" type="RichTextLabel" parent="UiKrams" unique_id=66097322]
 layout_mode = 0

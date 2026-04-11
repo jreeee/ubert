@@ -17,7 +17,6 @@ var wave_3_idx : int = 3
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	array = [tex_wave_1, tex_wave_2, tex_wave_3, tex_wave_4]
-	pass # Replace with function body.
 
 var offset1 = 0
 var offset2 = 2.1
@@ -27,6 +26,7 @@ var timer : int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
 	wave_1.texture = array[wave_1_idx]
 	wave_2.texture = array[wave_2_idx]
 	wave_3.texture = array[wave_3_idx]
@@ -43,6 +43,6 @@ func _process(delta: float) -> void:
 	if timer % 11 == 0:
 		wave_1_idx = (wave_1_idx + 1) % 4
 	if timer % 13 == 0:
-		wave_2_idx = (wave_2_idx - 1) % 4
+		wave_2_idx = (wave_2_idx + 1) % 4
 	if timer % 17 == 0:
 		wave_3_idx = (wave_3_idx + 1) % 4
