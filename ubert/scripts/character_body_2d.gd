@@ -74,7 +74,11 @@ func _grab() -> void:
 		print("success")
 
 func _shine() -> void:
-	print("shine bright")
+	if grab_anim.is_playing() == false:
+		grab_anim.play("ubert_grab")
+		print("shine bright")
+	else:
+		print("not so fast")
 
 func _darken(f: float) -> void:
 		# simple fade in
@@ -83,7 +87,7 @@ func _darken(f: float) -> void:
 			return
 		if f < 500:
 			return
-		var new_ving_idx = clamp(int(f / 1300), 0, array_ving.size() - 1)
+		var new_ving_idx = clamp(int(f * 3 / 700), 0, array_ving.size() - 1)
 		if new_ving_idx != ving_idx and not fading:
 			zone_trigger = f
 			print("ZT" + str(zone_trigger))
@@ -92,9 +96,7 @@ func _darken(f: float) -> void:
 				vignette_tex_b.texture = tex   # ✅ assign TO the sprite
 				fading = true
 		# cross fade
-		
 		var base_alpha = 1.0
-
 		if fading:
 			fade_t += abs(f - zone_trigger) / 10000
 			print("FD" + str(fade_t))
@@ -139,7 +141,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_grab"):
 		_grab()
 		
-	if Input.is_action_just_pressed("ui_grab"):
+	if Input.is_action_just_pressed("ui_shine"):
 		_shine()
 		
 	# --- Grace ---
@@ -188,6 +190,11 @@ func _on_area_2d_body_exited(body):
 		grabbable = false
 
 func _physics_process(delta: float) -> void:
+	# no sudden movement switches
+	if grab_anim.is_playing():
+		mov_anim.stop()
+		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 2)
+		return
 	var direction_r := Input.get_axis("ui_rotate_left", "ui_rotate_right")
 	if direction_r:
 		var rot = rotation + direction_r * rotation_speed * delta
@@ -203,7 +210,7 @@ func _physics_process(delta: float) -> void:
 	
 	var direction := Vector2.RIGHT.rotated(rotation)
 	if abs(rotation) > 2.5 and not is_sprite_left:
-		direction *= Vector2.RIGHT.rotated(-rotation)
+		direction = -direction #Vector2.RIGHT.rotated(-rotation)
 	# axis movement inputs
 	# respects the local rotation
 	var direction_h := Input.get_axis("ui_left", "ui_right")
@@ -222,7 +229,7 @@ func _physics_process(delta: float) -> void:
 		# do not go above the water line
 		if position.y < 0 and target_velocity.y < 0:
 			target_velocity.y = 0
-		#print(target_velocity)
+		# no movement allowed
 		velocity = velocity.move_toward(target_velocity, acceleration * delta)
 		mov_anim.play("hubert_l")
 		sprite_bubble.modulate.a = 1.0
@@ -238,10 +245,12 @@ func _physics_process(delta: float) -> void:
 		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 3)
 	#print(velocity)
 	if velocity.x > 0 and is_sprite_left:
+		rotation = -rotation
 		scale.x = -1
 		is_sprite_left = false
 
 	elif velocity.x < 0 and not is_sprite_left:
+		rotation = -rotation
 		scale.x = 1
 		is_sprite_left = true
 	
