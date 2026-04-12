@@ -18,6 +18,8 @@ class_name Player extends CharacterBody2D
 @onready var grab_anim : AnimationPlayer = get_node("GrabAnim")
 @onready var vignette_mat : ShaderMaterial
 
+
+var squished = false
 var horizontal_speed := 200.0
 var vertical_speed := 50
 var rotation_speed := 1.0
@@ -265,6 +267,13 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("ui_cheat"):
 			target_velocity *= 15
 			energy_status += 20 * delta
+			if not squished:
+				scale *= 0.5
+				squished = true
+		else:
+			if squished:
+				scale *= 2.0
+				squished = false
 		# do not go above the water line
 		if position.y < 0 and target_velocity.y < 0:
 			target_velocity.y = 0
