@@ -9,6 +9,9 @@ class_name Main extends Node2D
 @export var tex_wave_3 : Texture2D
 @export var tex_wave_4 : Texture2D
 
+@onready var ship : Sprite2D = get_node("Ship")
+
+
 var array
 var wave_1_idx : int = 0
 var wave_2_idx : int = 2
@@ -38,6 +41,8 @@ func _process(delta: float) -> void:
 	wave_1.position.y += 0.07 * sin(offset1)
 	wave_3.position.x += 0.26 * sin(offset2)
 	wave_3.position.y -= 0.23 * cos(offset1)
+	ship.position.x += 0.4 * cos(offset2/10.0)
+	ship.position.y -= 0.1 * sin(offset3/10.0)
 	timer += 1
 	if timer % 11 == 0:
 		wave_1_idx = (wave_1_idx + 1) % 4

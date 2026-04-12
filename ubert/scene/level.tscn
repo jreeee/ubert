@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bh8wxsa1xuwn2" path="res://assets/background/wave/wave1.png" id="19_ipxq3"]
 [ext_resource type="Texture2D" uid="uid://sq8evcbi3eog" path="res://assets/background/wave/wave2.png" id="20_rc1i6"]
 [ext_resource type="Texture2D" uid="uid://h7xtwvey4kkq" path="res://assets/background/wave/wave3.png" id="21_o0ehv"]
+[ext_resource type="Texture2D" uid="uid://ddqviuls8qvsy" path="res://assets/background/ship.png" id="24_bdnyd"]
 [ext_resource type="Texture2D" uid="uid://c2tnqdns602n" path="res://assets/background/2nd/ocean 1 second layer_tsp.png" id="27_6n7om"]
 [ext_resource type="Texture2D" uid="uid://crdqmrarwh136" path="res://assets/background/2nd/ocean 1&2 second layer.png" id="30_g3j2c"]
 [ext_resource type="Texture2D" uid="uid://1eq7pd4ectqy" path="res://assets/background/2nd/sky tile second layer.png" id="31_0xlfg"]
@@ -55,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://x54mj8bhuryw" path="res://assets/background/2nd/ocean 8 deep second layer.png" id="43_tohs0"]
 [ext_resource type="Texture2D" uid="uid://vbbq7182cr1t" path="res://assets/background/2nd/ocean 8&9 deep second layer.png" id="44_nnw6x"]
 [ext_resource type="Texture2D" uid="uid://b1aw5k82lmfj7" path="res://assets/background/2nd/ocean 9 deep second layer.png" id="45_h4u7a"]
+[ext_resource type="PackedScene" uid="uid://cc6k71h5a81aa" path="res://scene/item.tscn" id="49_7q8vm"]
 [ext_resource type="Texture2D" uid="uid://c3kwm7fsew8nv" path="res://assets/entity/ubert/uboot_animation_grab.png" id="61_s6ms7"]
 [ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
 [ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="67_pqwqv"]
@@ -326,6 +328,14 @@ texture = ExtResource("18_g6u61")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 480)
 
+[node name="Ship" type="Sprite2D" parent="." unique_id=120712728]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(412, -228)
+texture = ExtResource("24_bdnyd")
+region_enabled = true
+region_rect = Rect2(0, 0, 1200, 600)
+
 [node name="Btm_1" type="Sprite2D" parent="." unique_id=792665174]
 texture_filter = 1
 texture_repeat = 3
@@ -352,6 +362,7 @@ region_rect = Rect2(0, 0, 3840, 32)
 
 [node name="Btm_wave_l3" type="Sprite2D" parent="." unique_id=1056450676]
 texture_filter = 1
+texture_repeat = 2
 position = Vector2(0, -9)
 texture = ExtResource("21_o0ehv")
 region_enabled = true
@@ -365,18 +376,6 @@ scale = Vector2(1, 1.919)
 texture = ExtResource("27_6n7om")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
-
-[node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
-position = Vector2(-8, 504)
-sprite_tex = ExtResource("4_gunnj")
-desc = "awesome node, fun stuff"
-poi_name = "gaming"
-
-[node name="Node2D2" parent="." unique_id=1190652902 instance=ExtResource("2_ktmlt")]
-position = Vector2(112, 848)
-sprite_tex = ExtResource("3_oxop7")
-desc = "another awesome node, fun stuff"
-poi_name = "gaming 2"
 
 [node name="bg2" type="Parallax2D" parent="." unique_id=1047392137]
 scroll_scale = Vector2(0.8, 0.8)
@@ -524,6 +523,20 @@ region_rect = Rect2(0, 0, 3840, 360)
 [node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
 position = Vector2(335, 48)
 
+[node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
+position = Vector2(-8, 504)
+sprite_tex = ExtResource("4_gunnj")
+desc = "awesome node, fun stuff"
+poi_name = "gaming"
+
+[node name="Node2D2" parent="." unique_id=1190652902 instance=ExtResource("2_ktmlt")]
+position = Vector2(112, 848)
+sprite_tex = ExtResource("3_oxop7")
+desc = "another awesome node, fun stuff"
+poi_name = "gaming 2"
+
+[node name="ItemInstance" parent="." unique_id=1948620680 instance=ExtResource("49_7q8vm")]
+
 [node name="Ubert" type="CharacterBody2D" parent="." unique_id=2042117063]
 motion_mode = 1
 script = ExtResource("5_j35ge")
@@ -547,9 +560,10 @@ position = Vector2(-16, 0)
 polygon = PackedVector2Array(-74, 4, -73, 22, -52, 43, -31, 54, 12, 54, 25, 49, 32, 64, 67, 64, 71, 40, 71, -13, 66, -21, 68, -38, 32, -38, 24, -18, 14, -23, 2, -24, -3, -40, -7, -44, -11, -44, -11, -64, -87, -64, -90, -61, -90, -50, -26, -50, -26, -44, -33, -44, -36, -42, -36, -24, -43, -22, -57, -14)
 
 [node name="Grabber" type="Area2D" parent="Ubert" unique_id=1626758614]
+position = Vector2(-29, 38)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ubert/Grabber" unique_id=936283417]
-position = Vector2(-29.000002, 69)
+position = Vector2(-1.9073486e-06, 30)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_k6k75")
 
@@ -583,6 +597,7 @@ position = Vector2(-467, 347)
 polygon = PackedVector2Array(-404, -18, -84, 1, 205, 20, 239, 109, 196, 208, 349, 335, 377, 458, 212, 562, 134, 597, 99, 647, -116, 680, -170, 739, -144, 824, -38, 880, -2, 958, 52, 938, 117, 845, 194, 824, 281, 834, 303, 813, 329, 840, 330, 943, 379, 1087, -699, 1077, -704, -15)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls/StaticBody2D" unique_id=684011943]
+visible = false
 position = Vector2(2497, 1499.0001)
 rotation = 3.1441715
 scale = Vector2(1.1227355, 1)
@@ -707,3 +722,6 @@ bbcode_enabled = true
 text = "test"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="UiKrams" unique_id=306305640]
+
+[connection signal="body_entered" from="Ubert/Grabber" to="Ubert" method="_on_grabber_body_entered"]
+[connection signal="body_exited" from="Ubert/Grabber" to="Ubert" method="_on_grabber_body_exited"]

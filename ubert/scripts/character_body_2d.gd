@@ -18,17 +18,6 @@ class_name Player extends CharacterBody2D
 @onready var grab_anim : AnimationPlayer = get_node("GrabAnim")
 @onready var vignette_mat : ShaderMaterial
 
-#@export var vignette_0 : Texture2D
-#@export var vignette_1 : Texture2D
-#@export var vignette_2 : Texture2D
-#@export var vignette_3 : Texture2D
-#@export var vignette_4 : Texture2D
-#@export var vignette_5 : Texture2D
-#@export var vignette_6 : Texture2D
-#@export var vignette_7 : Texture2D
-#@export var vignette_8 : Texture2D
-#@export var vignette_9 : Texture2D
-
 var horizontal_speed := 200.0
 var vertical_speed := 50
 var rotation_speed := 1.0
@@ -60,7 +49,11 @@ var zone_trigger := 0
 var light_strength := 0.8
 var light_on := false
 
+var grabbed_obj : StaticBody2D
+
 var mov_anim_state = "ubert_r"
+
+var score = 0
 
 func _ready() -> void:
 	grabber.monitoring = true
@@ -75,14 +68,31 @@ func _ready() -> void:
 	#vignette_tex_b.modulate.a = 0
 	mov_anim.stop()
 	vignette_mat = vignette_tex_a.material
+
 func _grab() -> void:
 	if grab_anim.is_playing() == false:
 		grab_anim.play("ubert_grab")
 		print("gaming")
+		energy_status -= 2.0
 	else:
 		print("not so fast")
 	if grabbable:
-		print("success")
+		var item_sprite = grabbed_obj.get_child(0)
+		if item_sprite.name == "Trash":
+			score += int(grabbed_obj.get_child(1).name)
+			print(score)
+			_pick_up(item_sprite)
+		
+func _pick_up(s: Sprite2D) -> void:
+	await get_tree().create_timer(1.2).timeout
+	print("pick")
+	var tween = get_tree().create_tween()
+	tween.tween_property(s, "position", -grabber.position, 1.2)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+	s.queue_free()
+	grabbed_obj.get_parent().hide()
 
 func _shine() -> void:
 	if Input.is_action_just_released("ui_text_scroll_up"):
@@ -217,16 +227,6 @@ func _process(delta: float) -> void:
 	ui_energy.text = "[center]Energy: " + str("%3.1f" % energy_status) + "%[/center]"
 # mainly input handling
 
-func _on_area_2d_body_entered(body):
-	print(body.name)
-	if body.name == "Item":
-		grabbable = true
-		
-func _on_area_2d_body_exited(body):
-	print(body.name)
-	if body.name == "Item":
-		grabbable = false
-
 func _physics_process(delta: float) -> void:
 	# no sudden movement switches
 	if grab_anim.is_playing():
@@ -294,3 +294,17 @@ func _physics_process(delta: float) -> void:
 		is_sprite_left = true
 	
 	move_and_slide()
+
+
+func _on_grabber_body_entered(body: Node2D) -> void:
+	print(body.name)
+	if body.name == "Item":
+		grabbable = true
+		grabbed_obj = body
+
+
+func _on_grabber_body_exited(body: Node2D) -> void:
+	print(body.name)
+	if body.name == "Item":
+		grabbable = false
+		grabbed_obj = null
