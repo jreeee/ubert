@@ -8,11 +8,14 @@ uniform float angle = 0.3;
 uniform float radius = 0.5;
 uniform float softness = 0.2;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+uniform float pixel_size = 6.0;
 
 void fragment() {
     float ajusted_rad = radius * strength;
+    vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
     vec2 uv = SCREEN_UV;
 
+    uv = floor(uv * resolution / pixel_size) * pixel_size / resolution;
     // --- Light cone ---
     vec2 to_pixel = uv - light_pos;
     float dist = length(to_pixel);
@@ -28,7 +31,7 @@ void fragment() {
     float mask = cone * falloff * strength;
 
 
-     // ---------------------------------------------------
+    // ---------------------------------------------------
     // 1. TIGHT ellipsoid vignette shape
     // ---------------------------------------------------
     vec2 d = uv - vec2(0.5);
@@ -54,7 +57,9 @@ void fragment() {
     // ---------------------------------------------------
     vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
 
-    float darkness = clamp(vignette * strength2, 0.0, 0.95);
+    float levels = 0.1;
+    float quantized = (vignette * strength2 * levels) / levels;
+    float darkness = clamp(quantized, 0.0, 0.95);
 
     col.rgb *= (1.0 - darkness);
 

@@ -167,6 +167,7 @@ shader_parameter/depth = 0.0
 shader_parameter/angle = 0.5
 shader_parameter/radius = 0.5
 shader_parameter/softness = 0.1
+shader_parameter/pixel_size = 4.0
 
 [node name="Main" type="Node2D" unique_id=1152862137]
 script = ExtResource("1_t2nud")
@@ -646,6 +647,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="VignetteA" type="ColorRect" parent="UiKrams" unique_id=1561269321]
+texture_filter = 1
 material = SubResource("ShaderMaterial_ne45u")
 custom_minimum_size = Vector2(640, 360)
 layout_mode = 0
