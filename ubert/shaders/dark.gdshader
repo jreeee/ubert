@@ -6,7 +6,8 @@ uniform float strength = 0.0;
 uniform float depth = 0.0;
 uniform float angle = 0.3;
 uniform float radius = 0.5;
-uniform float softness = 0.1;
+uniform float softness = 0.2;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 
 void fragment() {
     float ajusted_rad = radius * strength;
@@ -20,25 +21,42 @@ void fragment() {
 
     float angle_diff = dot(dir, normalize(light_dir));
 
-    //float cone = smoothstep(cos(angle + softness), cos(angle), angle_diff);
-    float cone = smoothstep(cos(angle + softness), cos(angle - softness), angle_diff);
-    float falloff = strength - smoothstep(ajusted_rad - softness, ajusted_rad, dist);
+    float cone = smoothstep(cos(angle + softness), cos(angle), angle_diff);
+    //float cone = smoothstep(cos(angle + softness), cos(angle - softness), angle_diff);
+    float falloff = 1.0 - smoothstep(ajusted_rad - softness, ajusted_rad, dist);
 
     float mask = cone * falloff * strength;
 
-    // --- Vignette ---
-    //float v = clamp((depth - 10.0) / 390.0, 0.0, 1.0);
 
-    vec2 d = abs(uv - vec2(0.5));
-    float t = clamp(depth / 400.0, 0.0, 1.0);
-    float dist_center = distance(uv, vec2(0.5, 0.5)) * t * 5.0f; //max(d.x, d.y) * 2.0; // length(max(d - 0.2, 0.0)) * 2;
+     // ---------------------------------------------------
+    // 1. TIGHT ellipsoid vignette shape
+    // ---------------------------------------------------
+    vec2 d = uv - vec2(0.5);
 
-    // radius shrinks as depth increases
-    float radius_inner = mix(0.95, 0.01, t);
-    float radius_outer = radius_inner + 0.4;
-    float vignette = smoothstep(radius_inner, radius_outer, dist_center);
-    // --- Combine ---
-    float darkness = vignette;
+    float dist2 = length(max(abs(d) - vec2(0.06), 0.0));
+    dist2 *= 1.9;
+
+    float vignette = smoothstep(0.0, 0.5, dist2);
+    //vignette = vignette;
+
+    // ---------------------------------------------------
+    // 2. Depth → darkness strength (0 → 0.5)
+    // ---------------------------------------------------
+    float t = clamp((depth - 20.0) / 3500.0, 0.0, 1.0);
+    t = smoothstep(0.0, 1.0, t);
+
+    //float vignette = smoothstep(0.0, 0.1 * (1.2 - t), dist2);
+
+    float strength2 = t * 0.95;
+
+    // ---------------------------------------------------
+    // 3. APPLY TO IMAGE (THIS IS THE FIX)
+    // ---------------------------------------------------
+    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
+
+    float darkness = clamp(vignette * strength2, 0.0, 0.95);
+
+    col.rgb *= (1.0 - darkness);
 
     // light removes darkness
     darkness *= (1.0 - mask);

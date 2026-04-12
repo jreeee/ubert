@@ -18,16 +18,16 @@ class_name Player extends CharacterBody2D
 @onready var grab_anim : AnimationPlayer = get_node("GrabAnim")
 @onready var vignette_mat : ShaderMaterial
 
-@export var vignette_0 : Texture2D
-@export var vignette_1 : Texture2D
-@export var vignette_2 : Texture2D
-@export var vignette_3 : Texture2D
-@export var vignette_4 : Texture2D
-@export var vignette_5 : Texture2D
-@export var vignette_6 : Texture2D
-@export var vignette_7 : Texture2D
-@export var vignette_8 : Texture2D
-@export var vignette_9 : Texture2D
+#@export var vignette_0 : Texture2D
+#@export var vignette_1 : Texture2D
+#@export var vignette_2 : Texture2D
+#@export var vignette_3 : Texture2D
+#@export var vignette_4 : Texture2D
+#@export var vignette_5 : Texture2D
+#@export var vignette_6 : Texture2D
+#@export var vignette_7 : Texture2D
+#@export var vignette_8 : Texture2D
+#@export var vignette_9 : Texture2D
 
 var horizontal_speed := 200.0
 var vertical_speed := 50
@@ -57,15 +57,17 @@ var fade_t := 0.0
 var fading := false
 var zone_trigger := 0
 
-var light_strength := 0.0
+var light_strength := 0.8
+var light_on := false
+
 var mov_anim_state = "ubert_r"
 
 func _ready() -> void:
 	grabber.monitoring = true
 	grabber.monitorable = true
-	array_ving = [	vignette_0, vignette_1, vignette_2, vignette_3, 
-					vignette_4, vignette_5, vignette_6 ,vignette_7,
-					vignette_8 ,vignette_9]
+	#array_ving = [	vignette_0, vignette_1, vignette_2, vignette_3, 
+					#vignette_4, vignette_5, vignette_6 ,vignette_7,
+					#vignette_8 ,vignette_9]
 	vignette_tex_a.visible = true
 	#vignette_tex_b.visible = true
 	#vignette_tex_a.texture = array_ving[ving_idx]
@@ -83,6 +85,10 @@ func _grab() -> void:
 		print("success")
 
 func _shine() -> void:
+	if Input.is_action_just_released("ui_text_scroll_up"):
+		light_strength = clamp(light_strength + .1, 0.5, 1)
+	elif Input.is_action_just_released("ui_text_scroll_down"):
+		light_strength = clamp(light_strength - .1, 0.5, 1)
 	#radius = 0.2 + randf() * 0.02
 	var mouse_pos = get_viewport().get_mouse_position()
 	var screen_size = get_viewport_rect().size
@@ -99,7 +105,7 @@ func _shine() -> void:
 
 	var dir = (pos - light).normalized()
 	vignette_mat.set_shader_parameter("light_dir", dir)
-	light_strength = 0.7
+	energy_status -= 0.1 * light_strength
 	print("shine bright " + str(dir)) 
 
 func _darken(f: float) -> void:
@@ -164,9 +170,12 @@ func _process(delta: float) -> void:
 		_grab()
 		
 	if Input.is_action_pressed("ui_shine"):
+		if not light_on:
+			light_on = true
 		_shine()
 	else:
-		light_strength = 0.0
+		if light_on:
+			light_on = false
 		
 	# --- Grace ---
 	var depth_delta  = max_depth - depth_status
@@ -196,7 +205,10 @@ func _process(delta: float) -> void:
 			print("Game Over")
 			# TODO
 	# update shader
-	vignette_mat.set_shader_parameter("strength", light_strength)
+	var curr_light = 0.0
+	if light_on:
+		curr_light = light_strength
+	vignette_mat.set_shader_parameter("strength", curr_light)
 	vignette_mat.set_shader_parameter("depth", position.y)
 	# update UI
 	clamp(energy_status, 0.0, 100.0)

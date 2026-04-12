@@ -35,25 +35,16 @@
 [ext_resource type="Texture2D" uid="uid://h7xtwvey4kkq" path="res://assets/background/wave/wave3.png" id="21_o0ehv"]
 [ext_resource type="Texture2D" uid="uid://c2tnqdns602n" path="res://assets/background/2nd/ocean 1 second layer_tsp.png" id="27_6n7om"]
 [ext_resource type="Texture2D" uid="uid://crdqmrarwh136" path="res://assets/background/2nd/ocean 1&2 second layer.png" id="30_g3j2c"]
-[ext_resource type="Texture2D" uid="uid://y0qi0ns0j1pl" path="res://assets/ui/vignette-1.png" id="30_k6k75"]
 [ext_resource type="Texture2D" uid="uid://1eq7pd4ectqy" path="res://assets/background/2nd/sky tile second layer.png" id="31_0xlfg"]
 [ext_resource type="Texture2D" uid="uid://llqi682i0fkx" path="res://assets/background/2nd/ocean 2 second layer.png" id="31_6n7om"]
-[ext_resource type="Texture2D" uid="uid://cwqip0e0sl88q" path="res://assets/ui/vignette-2.png" id="31_hov2m"]
-[ext_resource type="Texture2D" uid="uid://cttlmqdqbv6c3" path="res://assets/ui/vignette-3.png" id="32_irv0p"]
 [ext_resource type="Texture2D" uid="uid://3rq5dll2ej6b" path="res://assets/background/2nd/ocean 2&3 second layer.png" id="32_s6ms7"]
 [ext_resource type="Texture2D" uid="uid://j8jd3dmtkqpf" path="res://assets/entity/fish/jellyfish.png" id="32_t2nud"]
-[ext_resource type="Texture2D" uid="uid://dc1rseifca8fl" path="res://assets/ui/vignette-4.png" id="33_sas3p"]
 [ext_resource type="Texture2D" uid="uid://b6x1ecmp1qxud" path="res://assets/background/2nd/ocean 3&4 second layer.png" id="34_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://das1b55kkc88s" path="res://assets/ui/vignette-0.png" id="34_jkyoy"]
-[ext_resource type="Texture2D" uid="uid://bd5rfjg6vuqof" path="res://assets/ui/vignette-5.png" id="34_ta4xs"]
 [ext_resource type="Texture2D" uid="uid://b7uk1rx7p2633" path="res://assets/background/2nd/ocean 3 deep second layer_alt.png" id="35_0xlfg"]
-[ext_resource type="Texture2D" uid="uid://besvxqya5ksqj" path="res://assets/ui/vignette-6.png" id="35_ghvb6"]
 [ext_resource type="Texture2D" uid="uid://b1yxir2tswtxf" path="res://assets/background/2nd/ocean 4 deep second layer.png" id="35_pqwqv"]
-[ext_resource type="Texture2D" uid="uid://cb778rhyubb34" path="res://assets/ui/vignette-7.png" id="36_g6u61"]
 [ext_resource type="Texture2D" uid="uid://bg328wbn0cqb0" path="res://assets/background/2nd/ocean 4&5 deep second layer.png" id="36_ne45u"]
-[ext_resource type="Texture2D" uid="uid://co5eqg5wmw7ht" path="res://assets/ui/vignette-8.png" id="37_ipxq3"]
 [ext_resource type="Texture2D" uid="uid://dovo0su1qgryn" path="res://assets/background/2nd/ocean 5 deep second layer.png" id="37_nuvdw"]
-[ext_resource type="Texture2D" uid="uid://dhxv8jsp5snlu" path="res://assets/ui/vignette-9.png" id="38_rc1i6"]
 [ext_resource type="Texture2D" uid="uid://cfotfcdvtqngy" path="res://assets/background/2nd/ocean 5&6 deep second layer.png" id="38_vfto0"]
 [ext_resource type="Texture2D" uid="uid://y7sa3mjlkajh" path="res://assets/background/2nd/ocean 6 deep second layer.png" id="39_2tbbd"]
 [ext_resource type="Texture2D" uid="uid://bo0md8mqltf3h" path="res://assets/background/2nd/ocean 6&7 deep second layer.png" id="40_bom8a"]
@@ -535,16 +526,6 @@ position = Vector2(335, 48)
 [node name="Ubert" type="CharacterBody2D" parent="." unique_id=2042117063]
 motion_mode = 1
 script = ExtResource("5_j35ge")
-vignette_0 = ExtResource("34_jkyoy")
-vignette_1 = ExtResource("30_k6k75")
-vignette_2 = ExtResource("31_hov2m")
-vignette_3 = ExtResource("32_irv0p")
-vignette_4 = ExtResource("33_sas3p")
-vignette_5 = ExtResource("34_ta4xs")
-vignette_6 = ExtResource("35_ghvb6")
-vignette_7 = ExtResource("36_g6u61")
-vignette_8 = ExtResource("37_ipxq3")
-vignette_9 = ExtResource("38_rc1i6")
 
 [node name="SpriteUbertRight" type="Sprite2D" parent="Ubert" unique_id=2008927260]
 texture = ExtResource("42_sas3p")
