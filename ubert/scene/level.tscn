@@ -65,6 +65,8 @@
 [ext_resource type="Texture2D" uid="uid://vbbq7182cr1t" path="res://assets/background/2nd/ocean 8&9 deep second layer.png" id="44_nnw6x"]
 [ext_resource type="Texture2D" uid="uid://b1aw5k82lmfj7" path="res://assets/background/2nd/ocean 9 deep second layer.png" id="45_h4u7a"]
 [ext_resource type="Texture2D" uid="uid://c3kwm7fsew8nv" path="res://assets/entity/ubert/uboot_animation_grab.png" id="61_s6ms7"]
+[ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
+[ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="67_pqwqv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
 
@@ -164,6 +166,16 @@ _data = {
 &"hubert_l": SubResource("Animation_sas3p"),
 &"ubert_grab": SubResource("Animation_0xlfg")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ne45u"]
+shader = ExtResource("67_pqwqv")
+shader_parameter/light_pos = Vector2(0, 0)
+shader_parameter/light_dir = Vector2(1, 0)
+shader_parameter/strength = 0.0
+shader_parameter/depth = 0.0
+shader_parameter/angle = 0.5
+shader_parameter/radius = 0.5
+shader_parameter/softness = 0.1
 
 [node name="Main" type="Node2D" unique_id=1152862137]
 script = ExtResource("1_t2nud")
@@ -550,13 +562,13 @@ hframes = 9
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ubert" unique_id=329119881]
 position = Vector2(-16, 0)
-polygon = PackedVector2Array(-74, 4, -73, 22, -52, 43, -31, 53, 12, 54, 25, 49, 32, 64, 67, 64, 71, 40, 71, -13, 66, -21, 68, -38, 32, -38, 24, -18, 14, -23, 2, -24, -3, -40, -7, -44, -11, -44, -11, -64, -87, -64, -90, -61, -90, -50, -26, -50, -26, -44, -33, -44, -36, -42, -36, -24, -43, -22, -57, -14)
+polygon = PackedVector2Array(-74, 4, -73, 22, -52, 43, -31, 54, 12, 54, 25, 49, 32, 64, 67, 64, 71, 40, 71, -13, 66, -21, 68, -38, 32, -38, 24, -18, 14, -23, 2, -24, -3, -40, -7, -44, -11, -44, -11, -64, -87, -64, -90, -61, -90, -50, -26, -50, -26, -44, -33, -44, -36, -42, -36, -24, -43, -22, -57, -14)
 
 [node name="Grabber" type="Area2D" parent="Ubert" unique_id=1626758614]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ubert/Grabber" unique_id=936283417]
-position = Vector2(-66, 53)
-scale = Vector2(1.2, 1.2)
+position = Vector2(-29.000002, 69)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_k6k75")
 
 [node name="MovAnim" type="AnimationPlayer" parent="Ubert" unique_id=1355448738]
@@ -569,6 +581,9 @@ libraries/ = SubResource("AnimationLibrary_irv0p")
 [node name="GrabAnim" type="AnimationPlayer" parent="Ubert" unique_id=62743442]
 root_node = NodePath("../MovAnim")
 libraries/ = SubResource("AnimationLibrary_irv0p")
+
+[node name="LightPos" type="Node2D" parent="Ubert" unique_id=1922374363]
+position = Vector2(-97, -56)
 
 [node name="Walls" type="CanvasGroup" parent="." unique_id=296466816]
 visible = false
@@ -593,6 +608,7 @@ polygon = PackedVector2Array(1065.7112, 196.91516, 1068.7806, 369.90674, 1136.68
 
 [node name="fg" type="Parallax2D" parent="." unique_id=1816066402]
 scroll_scale = Vector2(1.5, 1.5)
+scroll_offset = Vector2(-97, -52)
 
 [node name="Sprite2D6" type="Sprite2D" parent="fg" unique_id=1898951772]
 position = Vector2(-90, 136)
@@ -644,17 +660,23 @@ position = Vector2(-171, 377)
 texture = ExtResource("32_t2nud")
 centered = false
 
-[node name="UiKrams" type="Control" parent="." unique_id=516229422]
+[node name="UiKrams" type="Control" parent="." unique_id=2019073089]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="VignetteA" type="Sprite2D" parent="UiKrams" unique_id=1204726196]
+[node name="VignetteA" type="ColorRect" parent="UiKrams" unique_id=1561269321]
+material = SubResource("ShaderMaterial_ne45u")
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 0
+offset_left = -640.0
+offset_top = -360.0
+scale = Vector2(2, 2)
+
+[node name="VignetteA_old" type="Sprite2D" parent="UiKrams" unique_id=1204726196]
 visible = false
 texture_filter = 2
 scale = Vector2(2, 2)
-texture = ExtResource("34_jkyoy")
+texture = ExtResource("65_dfxqg")
 
 [node name="VignetteB" type="Sprite2D" parent="UiKrams" unique_id=673280427]
 visible = false
@@ -700,3 +722,5 @@ theme_override_fonts/normal_font = ExtResource("11_oxop7")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "test"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UiKrams" unique_id=306305640]

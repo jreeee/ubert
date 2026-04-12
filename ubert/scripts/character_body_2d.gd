@@ -8,13 +8,15 @@ class_name Player extends CharacterBody2D
 @onready var ui_oxygen : RichTextLabel = ui_canvas.get_node("UiOxygen")
 @onready var ui_energy : RichTextLabel = ui_canvas.get_node("UiEnergy")
 @onready var grabber : Area2D = get_node("Grabber")
-@onready var vignette_tex_a : Sprite2D = ui_canvas.get_node("VignetteA")
+@onready var vignette_tex_a : ColorRect = ui_canvas.get_node("VignetteA")
 @onready var vignette_tex_b : Sprite2D = ui_canvas.get_node("VignetteB")
+@onready var light_node : Node2D = get_node("LightPos")
+
 
 @onready var mov_anim : AnimationPlayer = get_node("MovAnim")
 @onready var bubble_anim : AnimationPlayer = get_node("BubbleAnim")
 @onready var grab_anim : AnimationPlayer = get_node("GrabAnim")
-
+@onready var vignette_mat : ShaderMaterial
 
 @export var vignette_0 : Texture2D
 @export var vignette_1 : Texture2D
@@ -55,6 +57,7 @@ var fade_t := 0.0
 var fading := false
 var zone_trigger := 0
 
+var light_strength := 0.0
 var mov_anim_state = "ubert_r"
 
 func _ready() -> void:
@@ -64,21 +67,40 @@ func _ready() -> void:
 					vignette_4, vignette_5, vignette_6 ,vignette_7,
 					vignette_8 ,vignette_9]
 	vignette_tex_a.visible = true
-	vignette_tex_b.visible = true
-	vignette_tex_a.texture = array_ving[ving_idx]
-	vignette_tex_a.modulate.a = 0
-	vignette_tex_b.modulate.a = 0
+	#vignette_tex_b.visible = true
+	#vignette_tex_a.texture = array_ving[ving_idx]
+	#vignette_tex_a.modulate.a = 1
+	#vignette_tex_b.modulate.a = 0
 	mov_anim.stop()
+	vignette_mat = vignette_tex_a.material
 func _grab() -> void:
+	if grab_anim.is_playing() == false:
+		grab_anim.play("ubert_grab")
+		print("gaming")
+	else:
+		print("not so fast")
 	if grabbable:
 		print("success")
 
 func _shine() -> void:
-	if grab_anim.is_playing() == false:
-		grab_anim.play("ubert_grab")
-		print("shine bright")
-	else:
-		print("not so fast")
+	#radius = 0.2 + randf() * 0.02
+	var mouse_pos = get_viewport().get_mouse_position()
+	var screen_size = get_viewport_rect().size
+	print("stuff")
+	#print(ui_canvas.get_canvas_transform().origin)
+	var light = light_node.get_global_transform_with_canvas().origin/ screen_size
+	#var screen_pos = get_viewport().get_camera_2d().unproject_position(global_position)
+	#print(screen_pos)
+	#var offset =  Vector2(-.087, -.09).rotated(rotation)  # TODO use node
+	#var light = Vector2(0.5, 0.5) + offset
+	var pos = mouse_pos / screen_size
+
+	vignette_mat.set_shader_parameter("light_pos", light)
+
+	var dir = (pos - light).normalized()
+	vignette_mat.set_shader_parameter("light_dir", dir)
+	light_strength = 0.7
+	print("shine bright " + str(dir)) 
 
 func _darken(f: float) -> void:
 		# simple fade in
@@ -137,12 +159,14 @@ func _process(delta: float) -> void:
 	#rint(position.y)
 	if position.y < 20 and oxygen_status < 100:
 		oxygen_status = clamp(oxygen_status + 2 * delta, 0.0, 100.0)
-	_darken(position.y)
+	#_darken(position.y)
 	if Input.is_action_just_pressed("ui_grab"):
 		_grab()
 		
-	if Input.is_action_just_pressed("ui_shine"):
+	if Input.is_action_pressed("ui_shine"):
 		_shine()
+	else:
+		light_strength = 0.0
 		
 	# --- Grace ---
 	var depth_delta  = max_depth - depth_status
@@ -171,7 +195,9 @@ func _process(delta: float) -> void:
 		if grace <= 0:
 			print("Game Over")
 			# TODO
-	
+	# update shader
+	vignette_mat.set_shader_parameter("strength", light_strength)
+	vignette_mat.set_shader_parameter("depth", position.y)
 	# update UI
 	clamp(energy_status, 0.0, 100.0)
 	ui_depth.text = "[center]Depth: " + str(depth_status) + "/" + str(max_depth) + "[/center]"
@@ -193,6 +219,7 @@ func _physics_process(delta: float) -> void:
 	# no sudden movement switches
 	if grab_anim.is_playing():
 		mov_anim.stop()
+		velocity = Vector2.ZERO
 		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 2)
 		return
 	var direction_r := Input.get_axis("ui_rotate_left", "ui_rotate_right")
