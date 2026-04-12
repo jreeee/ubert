@@ -66,6 +66,6 @@ void fragment() {
     // light removes darkness
     darkness *= (1.0 - mask);
     //COLOR = vec4(vec3(vignette), 1.0);
-    COLOR = vec4(0.0, 0.0, 0.0, darkness);
+    COLOR = vec4(0.0, 0.0, 0.05 * t, darkness);
     //COLOR = vec4(1.0, 0.0, 0.0, 0.7);
 }

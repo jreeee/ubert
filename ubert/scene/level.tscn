@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://b5crx4qj0rwi2" path="res://assets/background/last/ocean 3&4 mix deep.png" id="6_g8v4b"]
 [ext_resource type="Texture2D" uid="uid://drsrb2jskhdwm" path="res://assets/background/last/ocean 4 deep.png" id="7_up2ny"]
 [ext_resource type="Texture2D" uid="uid://8uj48v2vxgtn" path="res://assets/background/last/ocean 4&5 mix deep.png" id="8_28jen"]
-[ext_resource type="Texture2D" uid="uid://xwkluv18d4de" path="res://assets/background/tmp-wall-layout-fullsize.png" id="8_60efd"]
 [ext_resource type="Texture2D" uid="uid://ylwplavoak85" path="res://assets/background/last/ocean 5 deep.png" id="9_tlon1"]
 [ext_resource type="Texture2D" uid="uid://w70wqi185kue" path="res://assets/background/last/ocean 5&6 mix deep.png" id="10_328os"]
 [ext_resource type="Texture2D" uid="uid://28nn6881jqdm" path="res://assets/background/last/ocean 6 deep.png" id="11_hen5n"]
@@ -40,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://llqi682i0fkx" path="res://assets/background/2nd/ocean 2 second layer.png" id="31_6n7om"]
 [ext_resource type="Texture2D" uid="uid://3rq5dll2ej6b" path="res://assets/background/2nd/ocean 2&3 second layer.png" id="32_s6ms7"]
 [ext_resource type="Texture2D" uid="uid://j8jd3dmtkqpf" path="res://assets/entity/fish/jellyfish.png" id="32_t2nud"]
+[ext_resource type="Texture2D" uid="uid://c8r157n188e3j" path="res://assets/background/2nd/ocean 3 deep second layer.png" id="34_1oayv"]
 [ext_resource type="Texture2D" uid="uid://b6x1ecmp1qxud" path="res://assets/background/2nd/ocean 3&4 second layer.png" id="34_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://das1b55kkc88s" path="res://assets/ui/vignette-0.png" id="34_jkyoy"]
 [ext_resource type="Texture2D" uid="uid://b7uk1rx7p2633" path="res://assets/background/2nd/ocean 3 deep second layer_alt.png" id="35_0xlfg"]
@@ -57,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://vbbq7182cr1t" path="res://assets/background/2nd/ocean 8&9 deep second layer.png" id="44_nnw6x"]
 [ext_resource type="Texture2D" uid="uid://b1aw5k82lmfj7" path="res://assets/background/2nd/ocean 9 deep second layer.png" id="45_h4u7a"]
 [ext_resource type="PackedScene" uid="uid://cc6k71h5a81aa" path="res://scene/item.tscn" id="49_7q8vm"]
+[ext_resource type="Texture2D" uid="uid://c13x602onxk65" path="res://assets/background/map übersicht.png" id="55_bdnyd"]
 [ext_resource type="Texture2D" uid="uid://c3kwm7fsew8nv" path="res://assets/entity/ubert/uboot_animation_grab.png" id="61_s6ms7"]
 [ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
 [ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="67_pqwqv"]
@@ -179,7 +180,7 @@ tex_wave_3 = ExtResource("4_ghvb6")
 tex_wave_4 = ExtResource("5_g6u61")
 
 [node name="bg" type="Parallax2D" parent="." unique_id=1692096008]
-scroll_scale = Vector2(0.6, 0.6)
+scroll_scale = Vector2(0.5, 0.5)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="bg" unique_id=1637706027]
 
@@ -213,7 +214,7 @@ texture_repeat = 2
 position = Vector2(0, 1460)
 texture = ExtResource("5_42gcl")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm3_4" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1879724368]
 texture_filter = 1
@@ -221,7 +222,7 @@ texture_repeat = 2
 position = Vector2(0, 1605)
 texture = ExtResource("6_g8v4b")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm4" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1995615981]
 texture_filter = 1
@@ -237,7 +238,7 @@ texture_repeat = 2
 position = Vector2(0, 1940)
 texture = ExtResource("8_28jen")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm5" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1756978972]
 texture_filter = 1
@@ -245,7 +246,7 @@ texture_repeat = 2
 position = Vector2(0, 2202.005)
 texture = ExtResource("9_tlon1")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm5_6" type="Sprite2D" parent="bg/CanvasGroup" unique_id=565844699]
 texture_filter = 1
@@ -253,7 +254,7 @@ texture_repeat = 2
 position = Vector2(0, 2330)
 texture = ExtResource("10_328os")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm6" type="Sprite2D" parent="bg/CanvasGroup" unique_id=608140838]
 texture_filter = 1
@@ -261,7 +262,7 @@ texture_repeat = 2
 position = Vector2(0, 2527.76)
 texture = ExtResource("11_hen5n")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm6_7" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1124045810]
 texture_filter = 1
@@ -269,7 +270,7 @@ texture_repeat = 2
 position = Vector2(0, 2680)
 texture = ExtResource("12_k6k75")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm7" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1757271232]
 texture_filter = 1
@@ -285,7 +286,7 @@ texture_repeat = 2
 position = Vector2(0, 3040)
 texture = ExtResource("14_irv0p")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm8" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1933097734]
 texture_filter = 1
@@ -301,7 +302,7 @@ texture_repeat = 2
 position = Vector2(0, 3400)
 texture = ExtResource("16_ta4xs")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm9" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1664566837]
 texture_filter = 1
@@ -309,7 +310,7 @@ texture_repeat = 2
 position = Vector2(0, 3700)
 texture = ExtResource("17_ghvb6")
 region_enabled = true
-region_rect = Rect2(0, 0, 4000, 360)
+region_rect = Rect2(0, 0, 4000, 720)
 
 [node name="Btm1_nopara" type="Sprite2D" parent="bg/CanvasGroup" unique_id=1178386032]
 texture_filter = 1
@@ -422,27 +423,34 @@ texture = ExtResource("35_0xlfg")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
 
-[node name="Btm3_4" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=499880414]
+[node name="Btm3_1" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1090621650]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 1620)
-texture = ExtResource("34_dfxqg")
+position = Vector2(0, 1768)
+texture = ExtResource("34_1oayv")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
 
-[node name="Btm4" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1488511425]
-visible = false
+[node name="Btm4_n" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1488511425]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 1740)
+position = Vector2(0, 2276)
 texture = ExtResource("35_pqwqv")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 720)
+
+[node name="Btm3_4" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=499880414]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 1976)
+texture = ExtResource("34_dfxqg")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
 
 [node name="Btm4_5" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=458218023]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 1922)
+position = Vector2(0, 2638)
 texture = ExtResource("36_ne45u")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
@@ -450,15 +458,15 @@ region_rect = Rect2(0, 0, 3840, 360)
 [node name="Btm5" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=404488682]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 2282)
+position = Vector2(0, 3177)
 texture = ExtResource("37_nuvdw")
 region_enabled = true
-region_rect = Rect2(0, 0, 3840, 360)
+region_rect = Rect2(0, 0, 3840, 720)
 
 [node name="Btm5_6" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=236211417]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 2326)
+position = Vector2(0, 3401)
 texture = ExtResource("38_vfto0")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
@@ -466,15 +474,15 @@ region_rect = Rect2(0, 0, 3840, 360)
 [node name="Btm6" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1214669110]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 2642)
+position = Vector2(0, 3737)
 texture = ExtResource("39_2tbbd")
 region_enabled = true
-region_rect = Rect2(0, 0, 3840, 360)
+region_rect = Rect2(0, 0, 3840, 760)
 
 [node name="Btm6_7" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=954856802]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 2686)
+position = Vector2(0, 3941)
 texture = ExtResource("40_bom8a")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
@@ -482,41 +490,40 @@ region_rect = Rect2(0, 0, 3840, 360)
 [node name="Btm7" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=437833435]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 3002)
+position = Vector2(0, 4443)
 texture = ExtResource("41_8ibpr")
 region_enabled = true
-region_rect = Rect2(0, 0, 3840, 360)
+region_rect = Rect2(0, 0, 3840, 720)
 
 [node name="Btm7_8" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=2012591863]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 3046)
+position = Vector2(0, 4667)
 texture = ExtResource("42_oui4u")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
 
-[node name="Btm8" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1972688240]
-visible = false
+[node name="Btm8_n" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1972688240]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 3362)
+position = Vector2(0, 5163)
 texture = ExtResource("43_tohs0")
 region_enabled = true
-region_rect = Rect2(0, 0, 3840, 360)
-
-[node name="Btm8_9" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1434855276]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(0, 3406)
-texture = ExtResource("44_nnw6x")
-region_enabled = true
-region_rect = Rect2(0, 0, 3840, 360)
+region_rect = Rect2(0, 0, 3840, 720)
 
 [node name="Btm9" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=196390419]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 3722)
+position = Vector2(0, 5883)
 texture = ExtResource("45_h4u7a")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 720)
+
+[node name="Btm8_9" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=1434855276]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 5387)
+texture = ExtResource("44_nnw6x")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
 
@@ -582,18 +589,17 @@ libraries/ = SubResource("AnimationLibrary_irv0p")
 position = Vector2(-97, -56)
 
 [node name="Walls" type="CanvasGroup" parent="." unique_id=296466816]
-visible = false
 position = Vector2(-299, 177)
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls" unique_id=1124782417]
-position = Vector2(403, 2127)
-texture = ExtResource("8_60efd")
+position = Vector2(443, 3779)
+texture = ExtResource("55_bdnyd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls" unique_id=1358161559]
 position = Vector2(299, -177)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticBody2D" unique_id=729352666]
-position = Vector2(-467, 347)
+position = Vector2(-426, 629)
 polygon = PackedVector2Array(-404, -18, -84, 1, 205, 20, 239, 109, 196, 208, 349, 335, 377, 458, 212, 562, 134, 597, 99, 647, -116, 680, -170, 739, -144, 824, -38, 880, -2, 958, 52, 938, 117, 845, 194, 824, 281, 834, 303, 813, 329, 840, 330, 943, 379, 1087, -699, 1077, -704, -15)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls/StaticBody2D" unique_id=684011943]
