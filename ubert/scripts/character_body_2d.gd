@@ -2,11 +2,14 @@ class_name Player extends CharacterBody2D
 
 @onready var sprite_bubble : Sprite2D = get_node("SpriteUbertBubble")
 @onready var sprite_right : Sprite2D = get_node("SpriteUbertRight")
+@onready var sprite_dead : Sprite2D = get_node("Squish")
 @onready var hitbox : CollisionPolygon2D = get_node("CollisionPolygon2D")
 @onready var ui_canvas : Control = get_parent().get_node("UiKrams")
 @onready var ui_depth : RichTextLabel = ui_canvas.get_node("UiDepth")
 @onready var ui_oxygen : RichTextLabel = ui_canvas.get_node("UiOxygen")
 @onready var ui_energy : RichTextLabel = ui_canvas.get_node("UiEnergy")
+@onready var ui_score : RichTextLabel = ui_canvas.get_node("UiScore")
+
 @onready var grabber : Area2D = get_node("Grabber")
 @onready var vignette_tex_a : ColorRect = ui_canvas.get_node("VignetteA")
 @onready var vignette_tex_b : Sprite2D = ui_canvas.get_node("VignetteB")
@@ -30,7 +33,7 @@ var is_sprite_left := true
 var energy_status := 100.0
 var oxygen_status := 100.0
 var depth_status := 0
-var max_depth := 20 # can be upgraded
+var max_depth := 65 # can be upgraded
 var grace := 200
 # TODO sound stuff
 var alarm_d1 := false
@@ -53,7 +56,7 @@ var light_on := false
 
 var grabbed_obj : Area2D
 
-var mov_anim_state = "ubert_r"
+var mov_anim_state = "uberting"
 
 var score = 0
 
@@ -80,12 +83,10 @@ func _grab() -> void:
 		print("not so fast")
 	if grabbable:
 		var item_sprite = grabbed_obj.get_child(0)
-		if item_sprite.name == "Trash":
-			score += int(grabbed_obj.get_child(1).name)
-			print(score)
-			_pick_up(item_sprite)
+		_pick_up(item_sprite, int(grabbed_obj.get_child(1).name))
+
 		
-func _pick_up(s: Sprite2D) -> void:
+func _pick_up(s: Sprite2D, i: int) -> void:
 	await get_tree().create_timer(1.2).timeout
 	print("pick")
 	var tween = get_tree().create_tween()
@@ -93,6 +94,12 @@ func _pick_up(s: Sprite2D) -> void:
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
+	if s.name == "Trash":
+		score += i
+	elif s.name == "Battery":
+		energy_status += i
+	elif s.name == "Metal":
+		max_depth += i
 	s.queue_free()
 	grabbed_obj.get_parent().hide()
 
@@ -168,10 +175,13 @@ func _darken(f: float) -> void:
 
 # updating states
 func _process(delta: float) -> void:
+	#hotfix
+	if abs(scale.x) != abs(scale.y):
+		scale.x *= abs(scale.y)
 	# basic stuff for every tick
 	ui_canvas.position = position
 	depth_status = position.y * 0.05
-	oxygen_status -= delta * 0.1
+	oxygen_status -= delta * 0.4
 	if oxygen_status < 0:
 		print("Game Over")
 	#rint(position.y)
@@ -215,7 +225,13 @@ func _process(delta: float) -> void:
 			alarm_d3 = true
 		if grace <= 0:
 			print("Game Over")
-			# TODO
+			if mov_anim_state != "dead":
+				mov_anim.stop()
+				sprite_right.visible = false
+				sprite_dead.visible = true
+				mov_anim.play("squish")
+				mov_anim_state = "dead"
+				_restart()
 	# update shader
 	var curr_light = 0.0
 	if light_on:
@@ -227,6 +243,7 @@ func _process(delta: float) -> void:
 	ui_depth.text = "[center]Depth: " + str(depth_status) + "/" + str(max_depth) + "[/center]"
 	ui_oxygen.text = "[center]O_2: " + str("%3.1f" % oxygen_status) + "%[/center]"
 	ui_energy.text = "[center]Energy: " + str("%3.1f" % energy_status) + "%[/center]"
+	ui_score.text = "[center]Score: " + str(score) + "[/center]"
 # mainly input handling
 
 func _physics_process(delta: float) -> void:
@@ -235,6 +252,8 @@ func _physics_process(delta: float) -> void:
 		mov_anim.stop()
 		velocity = Vector2.ZERO
 		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 2)
+		return
+	if mov_anim_state == "dead":
 		return
 	var direction_r := Input.get_axis("ui_rotate_left", "ui_rotate_right")
 	if direction_r:
@@ -265,8 +284,8 @@ func _physics_process(delta: float) -> void:
 	if (direction_h or direction_v) and energy_status > 0:
 		var target_velocity := fwd + hrz
 		if Input.is_action_pressed("ui_cheat"):
-			target_velocity *= 15
-			energy_status += 20 * delta
+			target_velocity *= 3.0
+			#energy_status += 20 * delta
 			if not squished:
 				scale *= 0.5
 				squished = true
@@ -331,3 +350,7 @@ func _on_grabber_area_exited(area: Area2D) -> void:
 	if area.name == "Item":
 		grabbable = false
 		grabbed_obj = null
+
+func _restart() -> void:
+	await get_tree().create_timer(3.0).timeout
+	get_tree().reload_current_scene()

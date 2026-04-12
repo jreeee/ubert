@@ -56,10 +56,20 @@
 [ext_resource type="Texture2D" uid="uid://x54mj8bhuryw" path="res://assets/background/2nd/ocean 8 deep second layer.png" id="43_tohs0"]
 [ext_resource type="Texture2D" uid="uid://vbbq7182cr1t" path="res://assets/background/2nd/ocean 8&9 deep second layer.png" id="44_nnw6x"]
 [ext_resource type="Texture2D" uid="uid://b1aw5k82lmfj7" path="res://assets/background/2nd/ocean 9 deep second layer.png" id="45_h4u7a"]
+[ext_resource type="Texture2D" uid="uid://cqfoop2qnf5w7" path="res://assets/entity/trash/Chips.png" id="48_6n7om"]
 [ext_resource type="PackedScene" uid="uid://cc6k71h5a81aa" path="res://scene/item.tscn" id="49_7q8vm"]
-[ext_resource type="Texture2D" uid="uid://c13x602onxk65" path="res://assets/background/map übersicht.png" id="55_bdnyd"]
+[ext_resource type="Texture2D" uid="uid://fii5jyvndww6" path="res://assets/entity/trash/Dose 2.png" id="49_s6ms7"]
+[ext_resource type="Texture2D" uid="uid://coc7lpt2ymmf6" path="res://assets/entity/trash/Dose.png" id="50_s6ms7"]
+[ext_resource type="Texture2D" uid="uid://mqcuuh7aklr1" path="res://assets/entity/trash/Autobatterie.png" id="51_0xlfg"]
+[ext_resource type="Texture2D" uid="uid://difusbi8xfkpx" path="res://assets/entity/trash/Flasche.png" id="51_pqwqv"]
+[ext_resource type="Texture2D" uid="uid://cpm2c48q6v5iy" path="res://assets/entity/trash/Tüde.png" id="52_2tbbd"]
+[ext_resource type="Texture2D" uid="uid://ckwa1uqm0gnxj" path="res://assets/effects/ore.png" id="52_dfxqg"]
+[ext_resource type="Texture2D" uid="uid://dqwkddbl2lhio" path="res://assets/entity/trash/sardintubl.png" id="53_nuvdw"]
+[ext_resource type="Texture2D" uid="uid://dy0twull4mhyi" path="res://assets/entity/fish/PatrickuSpongebert.png" id="54_vfto0"]
 [ext_resource type="Texture2D" uid="uid://c3kwm7fsew8nv" path="res://assets/entity/ubert/uboot_animation_grab.png" id="61_s6ms7"]
+[ext_resource type="Texture2D" uid="uid://dsrymvlu7r0jk" path="res://assets/effects/implosion-Sheet.png" id="65_2tbbd"]
 [ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
+[ext_resource type="Texture2D" uid="uid://ck1j61x7w2w2a" path="res://assets/background/map.png" id="66_2tbbd"]
 [ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="67_pqwqv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
@@ -102,6 +112,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Squish:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ghvb6"]
 resource_name = "hubert_bub"
@@ -137,6 +159,22 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_bom8a"]
+resource_name = "squish"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Squish:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
 [sub_resource type="Animation" id="Animation_0xlfg"]
 resource_name = "ubert_grab"
 length = 2.7
@@ -158,6 +196,7 @@ _data = {
 &"RESET": SubResource("Animation_ta4xs"),
 &"hubert_bub": SubResource("Animation_ghvb6"),
 &"hubert_l": SubResource("Animation_sas3p"),
+&"squish": SubResource("Animation_bom8a"),
 &"ubert_grab": SubResource("Animation_0xlfg")
 }
 
@@ -530,6 +569,231 @@ region_rect = Rect2(0, 0, 3840, 360)
 [node name="CollectionItems" type="Node2D" parent="." unique_id=896402691]
 
 [node name="ItemInstance" parent="CollectionItems" unique_id=1948620680 instance=ExtResource("49_7q8vm")]
+sprite = ExtResource("48_6n7om")
+item = "Trash"
+amount = "50"
+
+[node name="ItemInstance2" parent="CollectionItems" unique_id=618166181 instance=ExtResource("49_7q8vm")]
+position = Vector2(-233, 1142)
+sprite = ExtResource("49_s6ms7")
+item = "Trash"
+amount = "20"
+
+[node name="ItemInstance3" parent="CollectionItems" unique_id=2066212470 instance=ExtResource("49_7q8vm")]
+position = Vector2(706, 1172)
+sprite = ExtResource("50_s6ms7")
+item = "Trash"
+amount = "15"
+
+[node name="ItemInstance4" parent="CollectionItems" unique_id=1407267117 instance=ExtResource("49_7q8vm")]
+position = Vector2(-525, 1142)
+sprite = ExtResource("51_pqwqv")
+item = "Trash"
+amount = "5"
+
+[node name="ItemInstance7" parent="CollectionItems" unique_id=136788939 instance=ExtResource("49_7q8vm")]
+position = Vector2(-268, 232)
+sprite = ExtResource("52_2tbbd")
+item = "Trash"
+amount = "0"
+
+[node name="ItemInstance10" parent="CollectionItems" unique_id=1567116563 instance=ExtResource("49_7q8vm")]
+position = Vector2(-162, 512)
+sprite = ExtResource("52_2tbbd")
+item = "Trash"
+amount = "0"
+
+[node name="ItemInstance5" parent="CollectionItems" unique_id=1332512743 instance=ExtResource("49_7q8vm")]
+position = Vector2(-81, 256)
+sprite = ExtResource("52_2tbbd")
+item = "Trash"
+amount = "1"
+
+[node name="ItemInstance8" parent="CollectionItems" unique_id=24546388 instance=ExtResource("49_7q8vm")]
+position = Vector2(2192, 2316)
+sprite = ExtResource("53_nuvdw")
+item = "Trash"
+amount = "2"
+
+[node name="ItemInstance6" parent="CollectionItems" unique_id=756776032 instance=ExtResource("49_7q8vm")]
+position = Vector2(1096, 1158)
+sprite = ExtResource("53_nuvdw")
+item = "Trash"
+amount = "2"
+
+[node name="ItemInstance9" parent="CollectionItems" unique_id=698956059 instance=ExtResource("49_7q8vm")]
+position = Vector2(115, 7155)
+sprite = ExtResource("54_vfto0")
+item = "Trash"
+amount = "500"
+
+[node name="ItemInstance10E" parent="CollectionItems" unique_id=1790659666 instance=ExtResource("49_7q8vm")]
+position = Vector2(344, 1172)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E14" parent="CollectionItems" unique_id=1647741301 instance=ExtResource("49_7q8vm")]
+position = Vector2(174, 3904)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E13" parent="CollectionItems" unique_id=727211356 instance=ExtResource("49_7q8vm")]
+position = Vector2(-735, 4196)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E12" parent="CollectionItems" unique_id=767584727 instance=ExtResource("49_7q8vm")]
+position = Vector2(-217, 3267)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E11" parent="CollectionItems" unique_id=1986477625 instance=ExtResource("49_7q8vm")]
+position = Vector2(-656, 2992)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E10" parent="CollectionItems" unique_id=992098600 instance=ExtResource("49_7q8vm")]
+position = Vector2(-175, 2768)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E9" parent="CollectionItems" unique_id=1526843705 instance=ExtResource("49_7q8vm")]
+position = Vector2(1170, 2018)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E7" parent="CollectionItems" unique_id=196249 instance=ExtResource("49_7q8vm")]
+position = Vector2(515, 2034)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E6" parent="CollectionItems" unique_id=1181910358 instance=ExtResource("49_7q8vm")]
+position = Vector2(-97, 1796)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E5" parent="CollectionItems" unique_id=1323336250 instance=ExtResource("49_7q8vm")]
+position = Vector2(499, 5133)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E4" parent="CollectionItems" unique_id=1156093446 instance=ExtResource("49_7q8vm")]
+position = Vector2(-382, 5041)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E3" parent="CollectionItems" unique_id=1564415895 instance=ExtResource("49_7q8vm")]
+position = Vector2(722, 5982)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E2" parent="CollectionItems" unique_id=476239539 instance=ExtResource("49_7q8vm")]
+position = Vector2(-318, 6316)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E8" parent="CollectionItems" unique_id=378765874 instance=ExtResource("49_7q8vm")]
+position = Vector2(-48, 1380)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance10E15" parent="CollectionItems" unique_id=967152631 instance=ExtResource("49_7q8vm")]
+position = Vector2(857, 4723)
+sprite = ExtResource("51_0xlfg")
+item = "Battery"
+amount = "30"
+
+[node name="ItemInstance11M8" parent="CollectionItems" unique_id=8751264 instance=ExtResource("49_7q8vm")]
+position = Vector2(1032, 5174)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M13" parent="CollectionItems" unique_id=586323607 instance=ExtResource("49_7q8vm")]
+position = Vector2(80, 6102)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M12" parent="CollectionItems" unique_id=65000949 instance=ExtResource("49_7q8vm")]
+position = Vector2(-690, 6193)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M11" parent="CollectionItems" unique_id=1551843476 instance=ExtResource("49_7q8vm")]
+position = Vector2(777, 5722)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M10" parent="CollectionItems" unique_id=9179478 instance=ExtResource("49_7q8vm")]
+position = Vector2(-829, 4707)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M9" parent="CollectionItems" unique_id=1505195093 instance=ExtResource("49_7q8vm")]
+position = Vector2(483, 4004)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M7" parent="CollectionItems" unique_id=740149155 instance=ExtResource("49_7q8vm")]
+position = Vector2(-1050, 3120)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M5" parent="CollectionItems" unique_id=43940991 instance=ExtResource("49_7q8vm")]
+position = Vector2(-1009, 3196)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M6" parent="CollectionItems" unique_id=1574926871 instance=ExtResource("49_7q8vm")]
+position = Vector2(576, 3477)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M4" parent="CollectionItems" unique_id=1080599327 instance=ExtResource("49_7q8vm")]
+position = Vector2(1080, 3008)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M3" parent="CollectionItems" unique_id=1868176617 instance=ExtResource("49_7q8vm")]
+position = Vector2(701, 3001)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M2" parent="CollectionItems" unique_id=1040621785 instance=ExtResource("49_7q8vm")]
+position = Vector2(-18, 1965)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
+
+[node name="ItemInstance11M" parent="CollectionItems" unique_id=1713802584 instance=ExtResource("49_7q8vm")]
+position = Vector2(174, 1263)
+sprite = ExtResource("52_dfxqg")
+item = "Metal"
+amount = "45"
 
 [node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
 visible = false
@@ -591,12 +855,17 @@ libraries/ = SubResource("AnimationLibrary_irv0p")
 [node name="LightPos" type="Node2D" parent="Ubert" unique_id=1922374363]
 position = Vector2(-97, -56)
 
+[node name="Squish" type="Sprite2D" parent="Ubert" unique_id=691387855]
+visible = false
+texture = ExtResource("65_2tbbd")
+hframes = 12
+
 [node name="Walls" type="CanvasGroup" parent="." unique_id=296466816]
 position = Vector2(-299, 177)
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls" unique_id=1124782417]
 position = Vector2(443, 3779)
-texture = ExtResource("55_bdnyd")
+texture = ExtResource("66_2tbbd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls" unique_id=1358161559]
 position = Vector2(299, -177)
@@ -750,12 +1019,25 @@ texture_filter = 2
 scale = Vector2(2, 2)
 texture = ExtResource("34_jkyoy")
 
+[node name="UiScore" type="RichTextLabel" parent="UiKrams" unique_id=1211437420]
+layout_mode = 0
+offset_left = -550.0
+offset_top = 195.0
+offset_right = -175.0
+offset_bottom = 302.0
+theme_override_colors/default_color = Color(1, 0.5058824, 0.16862746, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_oxop7")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "test"
+
 [node name="UiDepth" type="RichTextLabel" parent="UiKrams" unique_id=66097322]
 layout_mode = 0
 offset_left = -550.0
-offset_top = 207.0
+offset_top = 104.0
 offset_right = -175.0
-offset_bottom = 314.0
+offset_bottom = 211.0
 theme_override_colors/default_color = Color(1, 0.5058824, 0.16862746, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_oxop7")
@@ -766,9 +1048,9 @@ text = "test"
 [node name="UiOxygen" type="RichTextLabel" parent="UiKrams" unique_id=173197897]
 layout_mode = 0
 offset_left = -550.0
-offset_top = 83.0
+offset_top = 7.0
 offset_right = -175.0
-offset_bottom = 190.0
+offset_bottom = 114.0
 theme_override_colors/default_color = Color(1, 0.5058824, 0.16862746, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_oxop7")
@@ -779,9 +1061,9 @@ text = "test"
 [node name="UiEnergy" type="RichTextLabel" parent="UiKrams" unique_id=713558904]
 layout_mode = 0
 offset_left = -550.0
-offset_top = -18.0
+offset_top = -90.0
 offset_right = -175.0
-offset_bottom = 89.0
+offset_bottom = 17.0
 theme_override_colors/default_color = Color(1, 0.5058824, 0.16862746, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_oxop7")

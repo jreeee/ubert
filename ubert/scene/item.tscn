@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://cc6k71h5a81aa"]
 
 [ext_resource type="Texture2D" uid="uid://cpm2c48q6v5iy" path="res://assets/entity/trash/Tüde.png" id="1_4w2rt"]
+[ext_resource type="Script" uid="uid://b5nvehjcpa1oa" path="res://scripts/item.gd" id="1_akoh1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_akoh1"]
 
 [node name="Instance" type="Node2D" unique_id=1948620680]
+script = ExtResource("1_akoh1")
 
 [node name="Item" type="Area2D" parent="." unique_id=1825441799]
-position = Vector2(104, 192)
 
 [node name="Trash" type="Sprite2D" parent="Item" unique_id=648512841]
 texture = ExtResource("1_4w2rt")
