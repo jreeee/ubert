@@ -66,11 +66,13 @@
 [ext_resource type="Texture2D" uid="uid://ckwa1uqm0gnxj" path="res://assets/effects/ore.png" id="52_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://dqwkddbl2lhio" path="res://assets/entity/trash/sardintubl.png" id="53_nuvdw"]
 [ext_resource type="Texture2D" uid="uid://dy0twull4mhyi" path="res://assets/entity/fish/PatrickuSpongebert.png" id="54_vfto0"]
+[ext_resource type="Texture2D" uid="uid://c63t4xewndsf6" path="res://assets/background/creds.png" id="57_bom8a"]
 [ext_resource type="Texture2D" uid="uid://c3kwm7fsew8nv" path="res://assets/entity/ubert/uboot_animation_grab.png" id="61_s6ms7"]
 [ext_resource type="Texture2D" uid="uid://dsrymvlu7r0jk" path="res://assets/effects/implosion-Sheet.png" id="65_2tbbd"]
 [ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://ck1j61x7w2w2a" path="res://assets/background/map.png" id="66_2tbbd"]
 [ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="67_pqwqv"]
+[ext_resource type="Texture2D" uid="uid://chfg12orwkk7o" path="res://assets/font-export.png" id="73_8ibpr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
 
@@ -795,6 +797,10 @@ sprite = ExtResource("52_dfxqg")
 item = "Metal"
 amount = "45"
 
+[node name="creds" type="Sprite2D" parent="." unique_id=1198326825]
+position = Vector2(-427, 7008)
+texture = ExtResource("57_bom8a")
+
 [node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
 visible = false
 position = Vector2(335, 48)
@@ -1072,6 +1078,10 @@ bbcode_enabled = true
 text = "test"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="UiKrams" unique_id=306305640]
+
+[node name="GameOver" type="Sprite2D" parent="UiKrams" unique_id=1534439362]
+visible = false
+texture = ExtResource("73_8ibpr")
 
 [connection signal="area_entered" from="Ubert/Grabber" to="Ubert" method="_on_grabber_area_entered"]
 [connection signal="area_exited" from="Ubert/Grabber" to="Ubert" method="_on_grabber_area_exited"]

@@ -9,6 +9,8 @@ class_name Player extends CharacterBody2D
 @onready var ui_oxygen : RichTextLabel = ui_canvas.get_node("UiOxygen")
 @onready var ui_energy : RichTextLabel = ui_canvas.get_node("UiEnergy")
 @onready var ui_score : RichTextLabel = ui_canvas.get_node("UiScore")
+@onready var game_over : Sprite2D = ui_canvas.get_node("GameOver")
+
 
 @onready var grabber : Area2D = get_node("Grabber")
 @onready var vignette_tex_a : ColorRect = ui_canvas.get_node("VignetteA")
@@ -352,5 +354,6 @@ func _on_grabber_area_exited(area: Area2D) -> void:
 		grabbed_obj = null
 
 func _restart() -> void:
+	game_over.visible = true
 	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()
