@@ -329,6 +329,14 @@ texture = ExtResource("18_g6u61")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 480)
 
+[node name="Btm_Sky" type="Sprite2D" parent="." unique_id=873407039]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -183)
+texture = ExtResource("31_0xlfg")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 360)
+
 [node name="Ship" type="Sprite2D" parent="." unique_id=120712728]
 texture_filter = 1
 texture_repeat = 2
@@ -382,14 +390,6 @@ region_rect = Rect2(0, 0, 3840, 360)
 scroll_scale = Vector2(0.8, 0.8)
 
 [node name="CanvasGroup" type="CanvasGroup" parent="bg2" unique_id=1254128796]
-
-[node name="Btm_Sky" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=873407039]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(0, -200)
-texture = ExtResource("31_0xlfg")
-region_enabled = true
-region_rect = Rect2(0, 0, 3840, 360)
 
 [node name="Btm1_2" type="Sprite2D" parent="bg2/CanvasGroup" unique_id=233225631]
 texture_filter = 1
@@ -527,7 +527,12 @@ texture = ExtResource("44_nnw6x")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 360)
 
+[node name="CollectionItems" type="Node2D" parent="." unique_id=896402691]
+
+[node name="ItemInstance" parent="CollectionItems" unique_id=1948620680 instance=ExtResource("49_7q8vm")]
+
 [node name="StartMenu" parent="." unique_id=2056195777 instance=ExtResource("5_ktmlt")]
+visible = false
 position = Vector2(335, 48)
 
 [node name="Node2D" parent="." unique_id=916585610 instance=ExtResource("2_ktmlt")]
@@ -541,8 +546,6 @@ position = Vector2(112, 848)
 sprite_tex = ExtResource("3_oxop7")
 desc = "another awesome node, fun stuff"
 poi_name = "gaming 2"
-
-[node name="ItemInstance" parent="." unique_id=1948620680 instance=ExtResource("49_7q8vm")]
 
 [node name="Ubert" type="CharacterBody2D" parent="." unique_id=2042117063]
 motion_mode = 1
@@ -788,5 +791,7 @@ text = "test"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="UiKrams" unique_id=306305640]
 
+[connection signal="area_entered" from="Ubert/Grabber" to="Ubert" method="_on_grabber_area_entered"]
+[connection signal="area_exited" from="Ubert/Grabber" to="Ubert" method="_on_grabber_area_exited"]
 [connection signal="body_entered" from="Ubert/Grabber" to="Ubert" method="_on_grabber_body_entered"]
 [connection signal="body_exited" from="Ubert/Grabber" to="Ubert" method="_on_grabber_body_exited"]

@@ -51,7 +51,7 @@ var zone_trigger := 0
 var light_strength := 0.8
 var light_on := false
 
-var grabbed_obj : StaticBody2D
+var grabbed_obj : Area2D
 
 var mov_anim_state = "ubert_r"
 
@@ -305,15 +305,29 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_grabber_body_entered(body: Node2D) -> void:
-	print(body.name)
-	if body.name == "Item":
+#func _on_grabber_body_entered(body: Node2D) -> void:
+	#print(body.name)
+	#if body.name == "Item":
+		#grabbable = true
+		#grabbed_obj = body
+#
+#
+#func _on_grabber_body_exited(body: Node2D) -> void:
+	#print(body.name)
+	#if body.name == "Item":
+		#grabbable = false
+		#grabbed_obj = null
+
+
+func _on_grabber_area_entered(area: Area2D) -> void:
+	print(area.name)
+	if area.name == "Item":
 		grabbable = true
-		grabbed_obj = body
+		grabbed_obj = area
 
 
-func _on_grabber_body_exited(body: Node2D) -> void:
-	print(body.name)
-	if body.name == "Item":
+func _on_grabber_area_exited(area: Area2D) -> void:
+	print(area.name)
+	if area.name == "Item":
 		grabbable = false
 		grabbed_obj = null

@@ -6,7 +6,7 @@
 
 [node name="Instance" type="Node2D" unique_id=1948620680]
 
-[node name="Item" type="StaticBody2D" parent="." unique_id=769171968]
+[node name="Item" type="Area2D" parent="." unique_id=1825441799]
 position = Vector2(104, 192)
 
 [node name="Trash" type="Sprite2D" parent="Item" unique_id=648512841]
