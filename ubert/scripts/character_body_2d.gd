@@ -57,7 +57,7 @@ var light_strength := 0.8
 var light_on := false
 
 var grabbed_obj : Area2D
-
+var curr_size = 1.0
 var mov_anim_state = "uberting"
 
 var score = 0
@@ -177,9 +177,6 @@ func _darken(f: float) -> void:
 
 # updating states
 func _process(delta: float) -> void:
-	#hotfix
-	if abs(scale.x) != abs(scale.y):
-		scale.x *= abs(scale.y)
 	# basic stuff for every tick
 	ui_canvas.position = position
 	depth_status = position.y * 0.05
