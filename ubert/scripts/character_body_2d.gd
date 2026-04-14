@@ -33,7 +33,7 @@ var deceleration := 400.0
 var is_sprite_left := true
 
 var energy_status := 100.0
-var oxygen_status := 1.0
+var oxygen_status := 100.0
 var depth_status := 0
 var max_depth := 65 # can be upgraded
 var grace := 200
@@ -65,15 +65,7 @@ var score = 0
 func _ready() -> void:
 	grabber.monitoring = true
 	grabber.monitorable = true
-	#array_ving = [	vignette_0, vignette_1, vignette_2, vignette_3, 
-					#vignette_4, vignette_5, vignette_6 ,vignette_7,
-					#vignette_8 ,vignette_9]
 	vignette_tex_a.visible = true
-	#vignette_tex_b.visible = true
-	#vignette_tex_a.texture = array_ving[ving_idx]
-	#vignette_tex_a.modulate.a = 1
-	#vignette_tex_b.modulate.a = 0
-	mov_anim.stop()
 	vignette_mat = vignette_tex_a.material
 
 func _grab() -> void:
@@ -189,11 +181,13 @@ func _process(delta: float) -> void:
 		oxygen_status = 0.0
 		print("ran out of oxygen")
 		mov_anim.stop()
+		_fade_bubbles(delta)
 		_restart()
 	elif energy_status <= 0.0:
 		energy_status = 0.0
 		print("ran out of energy")
 		mov_anim.stop()
+		_fade_bubbles(delta)
 		_restart()
 	if position.y < 20 and oxygen_status < 100:
 		oxygen_status = clamp(oxygen_status + 2 * delta, 0.0, 100.0)
@@ -261,7 +255,7 @@ func _physics_process(delta: float) -> void:
 	if grab_anim.is_playing():
 		mov_anim.stop()
 		velocity = Vector2.ZERO
-		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 2)
+		_fade_bubbles(delta)
 		return
 	if is_game_over:
 		return
@@ -319,7 +313,7 @@ func _physics_process(delta: float) -> void:
 		# decelerate
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
 		mov_anim.stop()
-		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 3)
+		_fade_bubbles(delta)
 	#print(velocity)
 	if velocity.x > 0 and is_sprite_left:
 		rotation = -rotation
@@ -366,3 +360,6 @@ func _restart() -> void:
 	game_over.visible = true
 	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()
+
+func _fade_bubbles(d: float) -> void:
+	sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, d * 2)
