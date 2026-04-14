@@ -45,27 +45,20 @@ void fragment() {
     // ---------------------------------------------------
     // 2. Depth → darkness strength (0 → 0.5)
     // ---------------------------------------------------
-    float t = clamp((depth - 20.0) / 3500.0, 0.0, 1.0);
+    float t = clamp((depth - 20.0) / 5000.0, 0.0, 1.0);
     t = smoothstep(0.0, 1.0, t);
 
     //float vignette = smoothstep(0.0, 0.1 * (1.2 - t), dist2);
 
     float strength2 = t * 0.95;
 
-    // ---------------------------------------------------
-    // 3. APPLY TO IMAGE (THIS IS THE FIX)
-    // ---------------------------------------------------
-    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
-
-    float levels = 0.1;
-    float quantized = (vignette * strength2 * levels) / levels;
-    float darkness = clamp(quantized, 0.0, 0.95);
-
-    col.rgb *= (1.0 - darkness);
+    float darkness = vignette * strength2;
 
     // light removes darkness
     darkness *= (1.0 - mask);
+    float levels = 10.0;
+    float quantized = float(int(pow(levels, 1.1) * darkness)) / levels;
     //COLOR = vec4(vec3(vignette), 1.0);
-    COLOR = vec4(0.0, 0.0, 0.05 * t, darkness);
+    COLOR = vec4(0.0, 0.0, 0.05 * t, clamp(quantized, 0.0, 0.95));
     //COLOR = vec4(1.0, 0.0, 0.0, 0.7);
 }

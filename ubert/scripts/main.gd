@@ -35,14 +35,14 @@ func _process(delta: float) -> void:
 	offset1 += delta * randi_range(3, 8)
 	offset2 -= delta * randi_range(4, 10)
 	offset3 += delta * randi_range(2, 7)
-	wave_2.position.x += 0.2 * sin(offset1)
+	wave_2.position.x += 0.15 * sin(offset1)
 	wave_2.position.y -= 0.1 * sin(offset2)
-	wave_1.position.x += 0.15 * cos(offset3)
+	wave_1.position.x += 0.11 * cos(offset3)
 	wave_1.position.y += 0.07 * sin(offset1)
 	wave_3.position.x += 0.26 * sin(offset2)
-	wave_3.position.y -= 0.23 * cos(offset1)
-	ship.position.x += 0.4 * cos(offset2/10.0)
-	ship.position.y -= 0.1 * sin(offset3/10.0)
+	wave_3.position.y -= 0.12 * cos(offset1)
+	ship.position.x += 0.3 * cos(offset2/10.0)
+	ship.position.y -= 0.03 * sin(offset3/10.0)
 	timer += 1
 	if timer % 11 == 0:
 		wave_1_idx = (wave_1_idx + 1) % 4

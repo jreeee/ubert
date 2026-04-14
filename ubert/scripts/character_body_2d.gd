@@ -33,7 +33,7 @@ var deceleration := 400.0
 var is_sprite_left := true
 
 var energy_status := 100.0
-var oxygen_status := 100.0
+var oxygen_status := 1.0
 var depth_status := 0
 var max_depth := 65 # can be upgraded
 var grace := 200
@@ -58,7 +58,7 @@ var light_on := false
 
 var grabbed_obj : Area2D
 var curr_size = 1.0
-var mov_anim_state = "uberting"
+var is_game_over = false
 
 var score = 0
 
@@ -77,6 +77,8 @@ func _ready() -> void:
 	vignette_mat = vignette_tex_a.material
 
 func _grab() -> void:
+	if is_game_over:
+		return
 	if grab_anim.is_playing() == false:
 		grab_anim.play("ubert_grab")
 		print("gaming")
@@ -106,6 +108,8 @@ func _pick_up(s: Sprite2D, i: int) -> void:
 	grabbed_obj.get_parent().hide()
 
 func _shine() -> void:
+	if is_game_over:
+		return 
 	if Input.is_action_just_released("ui_text_scroll_up"):
 		light_strength = clamp(light_strength + .1, 0.5, 1)
 	elif Input.is_action_just_released("ui_text_scroll_down"):
@@ -181,9 +185,16 @@ func _process(delta: float) -> void:
 	ui_canvas.position = position
 	depth_status = position.y * 0.05
 	oxygen_status -= delta * 0.4
-	if oxygen_status < 0:
-		print("Game Over")
-	#rint(position.y)
+	if oxygen_status <= 0.0:
+		oxygen_status = 0.0
+		print("ran out of oxygen")
+		mov_anim.stop()
+		_restart()
+	elif energy_status <= 0.0:
+		energy_status = 0.0
+		print("ran out of energy")
+		mov_anim.stop()
+		_restart()
 	if position.y < 20 and oxygen_status < 100:
 		oxygen_status = clamp(oxygen_status + 2 * delta, 0.0, 100.0)
 	#_darken(position.y)
@@ -191,7 +202,7 @@ func _process(delta: float) -> void:
 		_grab()
 		
 	if Input.is_action_pressed("ui_shine"):
-		if not light_on:
+		if not light_on and not is_game_over:
 			light_on = true
 		_shine()
 	else:
@@ -222,15 +233,14 @@ func _process(delta: float) -> void:
 		if grace <= 50 and not alarm_d3:
 			print("Dude...")
 			alarm_d3 = true
-		if grace <= 0:
+		if grace <= 0 and not is_game_over:
 			print("Game Over")
-			if mov_anim_state != "dead":
-				mov_anim.stop()
-				sprite_right.visible = false
-				sprite_dead.visible = true
-				mov_anim.play("squish")
-				mov_anim_state = "dead"
-				_restart()
+			mov_anim.stop()
+			sprite_right.visible = false
+			sprite_dead.visible = true
+			mov_anim.play("squish")
+			is_game_over = true
+			_restart()
 	# update shader
 	var curr_light = 0.0
 	if light_on:
@@ -238,7 +248,8 @@ func _process(delta: float) -> void:
 	vignette_mat.set_shader_parameter("strength", curr_light)
 	vignette_mat.set_shader_parameter("depth", position.y)
 	# update UI
-	clamp(energy_status, 0.0, 100.0)
+	# mainly to not go above 100
+	energy_status = clamp(energy_status, 0.0, 100.0)
 	ui_depth.text = "[center]Depth: " + str(depth_status) + "/" + str(max_depth) + "[/center]"
 	ui_oxygen.text = "[center]O_2: " + str("%3.1f" % oxygen_status) + "%[/center]"
 	ui_energy.text = "[center]Energy: " + str("%3.1f" % energy_status) + "%[/center]"
@@ -252,7 +263,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		sprite_bubble.modulate.a = move_toward(sprite_bubble.modulate.a, 0.0, delta * 2)
 		return
-	if mov_anim_state == "dead":
+	if is_game_over:
 		return
 	var direction_r := Input.get_axis("ui_rotate_left", "ui_rotate_right")
 	if direction_r:
@@ -280,7 +291,7 @@ func _physics_process(delta: float) -> void:
 	var hrz := Vector2(0, vertical_speed * direction_v)
 	# apply input (impulse based)
 
-	if (direction_h or direction_v) and energy_status > 0:
+	if (direction_h or direction_v) and energy_status > 0.0 and oxygen_status > 0.0:
 		var target_velocity := fwd + hrz
 		if Input.is_action_pressed("ui_cheat"):
 			target_velocity *= 3.0
@@ -351,6 +362,7 @@ func _on_grabber_area_exited(area: Area2D) -> void:
 		grabbed_obj = null
 
 func _restart() -> void:
+	is_game_over = true
 	game_over.visible = true
 	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()

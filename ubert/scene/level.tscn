@@ -71,7 +71,6 @@
 [ext_resource type="Texture2D" uid="uid://dsrymvlu7r0jk" path="res://assets/effects/implosion-Sheet.png" id="65_2tbbd"]
 [ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://ck1j61x7w2w2a" path="res://assets/background/map.png" id="66_2tbbd"]
-[ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="67_pqwqv"]
 [ext_resource type="Texture2D" uid="uid://chfg12orwkk7o" path="res://assets/font-export.png" id="73_8ibpr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
@@ -202,8 +201,81 @@ _data = {
 &"ubert_grab": SubResource("Animation_0xlfg")
 }
 
+[sub_resource type="Shader" id="Shader_bom8a"]
+code = "shader_type canvas_item;
+
+uniform vec2 light_pos;
+uniform vec2 light_dir = vec2(1.0, 0.0);
+uniform float strength = 0.0;
+uniform float depth = 0.0;
+uniform float angle = 0.3;
+uniform float radius = 0.5;
+uniform float softness = 0.2;
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+uniform float pixel_size = 6.0;
+
+void fragment() {
+    float ajusted_rad = radius * strength;
+    vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
+    vec2 uv = SCREEN_UV;
+
+    uv = floor(uv * resolution / pixel_size) * pixel_size / resolution;
+    // --- Light cone ---
+    vec2 to_pixel = uv - light_pos;
+    float dist = length(to_pixel);
+
+    vec2 dir = dist > 0.0001 ? to_pixel / dist : vec2(0.0);
+
+    float angle_diff = dot(dir, normalize(light_dir));
+
+    float cone = smoothstep(cos(angle + softness), cos(angle), angle_diff);
+    //float cone = smoothstep(cos(angle + softness), cos(angle - softness), angle_diff);
+    float falloff = 1.0 - smoothstep(ajusted_rad - softness, ajusted_rad, dist);
+
+    float mask = cone * falloff * strength;
+
+
+    // ---------------------------------------------------
+    // 1. TIGHT ellipsoid vignette shape
+    // ---------------------------------------------------
+    vec2 d = uv - vec2(0.5);
+
+    float dist2 = length(max(abs(d) - vec2(0.06), 0.0));
+    dist2 *= 1.9;
+
+    float vignette = smoothstep(0.0, 0.5, dist2);
+    //vignette = vignette;
+
+    // ---------------------------------------------------
+    // 2. Depth → darkness strength (0 → 0.5)
+    // ---------------------------------------------------
+    float t = clamp((depth - 20.0) / 3500.0, 0.0, 1.0);
+    t = smoothstep(0.0, 1.0, t);
+
+    //float vignette = smoothstep(0.0, 0.1 * (1.2 - t), dist2);
+
+    float strength2 = t * 0.95;
+
+    // ---------------------------------------------------
+    // 3. APPLY TO IMAGE (THIS IS THE FIX)
+    // ---------------------------------------------------
+    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
+
+    float levels = 0.1;
+    float quantized = (vignette * strength2 * levels) / levels;
+    float darkness = clamp(quantized, 0.0, 0.95);
+
+    col.rgb *= (1.0 - darkness);
+
+    // light removes darkness
+    darkness *= (1.0 - mask);
+    //COLOR = vec4(vec3(vignette), 1.0);
+    COLOR = vec4(0.0, 0.0, 0.05 * t, darkness);
+    //COLOR = vec4(1.0, 0.0, 0.0, 0.7);
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ne45u"]
-shader = ExtResource("67_pqwqv")
+shader = SubResource("Shader_bom8a")
 shader_parameter/light_pos = Vector2(0, 0)
 shader_parameter/light_dir = Vector2(1, 0)
 shader_parameter/strength = 0.0
@@ -912,7 +984,7 @@ polygon = PackedVector2Array(-582, -2, -251, -57, -121, -35, -38, -37, 61, -24, 
 position = Vector2(2491, 2319.9998)
 rotation = 3.1441715
 scale = Vector2(1.1227355, 1)
-polygon = PackedVector2Array(1041.5754, 158.98462, 1024.6962, 178.03369, 1021.2322, 221.0437, 1025.8165, 278.03064, 1031.3582, 364.0149, 1040.3981, 421.9889, 1040.4923, 462.98877, 1055.797, 533.9447, 1078.1443, 568.8801, 1111.1683, 598.78455, 1179.7759, 609.58606, 1244.839, 628.3977, 1299.2301, 654.24023, 1339.4026, 694.124, 1452.5647, 713.7965, 1554.8228, 639.50024, 1635.6265, 531.26587, 1687.2627, 521.11633, 1726.3745, 487.00305, 1757.553, 488.91272, 1774.4896, 494.86377, 1813.6863, 497.75024, 1846.5679, 465.6549, 1877.7211, 456.5647, 1955.2031, 453.34033, 1984.6438, 474.25513, 2014.1671, 531.1699, 2044.5421, 571.08215, 2070.6106, 675.00696, 2080.5803, 749.9784, 2078.0002, 789.98584, 2066.4927, 821.0194, 2060.352, 862.03723, 2051.5164, 893.063, 2063.1895, 934.0292, 2058.8257, 973.042, 2058.1624, 1072.0443, 2066.213, 1087.021, 2058.2336, 1103.0442, 2015.5383, 1128.1678, 1922.8987, 1124.436, 1815.1494, 1134.748, 1741.1979, 1123.9622, 1617.3843, 1120.3206, 1511.412, 1128.6274, 1412.542, 1126.9137, 1216.6455, 1150.481, 1040.2866, 1148.9917, 977.9529, 1155.172, 660.84985, 2310.094, 873.1787, 2848.481, 333.6067, 2928.0435, 743.8573, 446.84753, 985.1941, 42.147705, 2139.502, 33.80542, 2032.9053, 158.1145, 1995.5565, 184.22266, 1985.8809, 237.25073, 1959.2109, 259.32813, 1923.5977, 265.4314, 1908.4308, 254.4751, 1864.7853, 253.60156, 1790.0165, 274.8181, 1735.7012, 281.97534, 1592.6119, 417.39, 1511.6107, 439.62463, 1383.2957, 414.9961, 1304.7964, 363.22314, 1219.9983, 283.4685, 1172.8221, 296.6051, 1159.4481, 290.6438, 1121.9524, 252.7522, 1056.733, 165.94092)
+polygon = PackedVector2Array(1041.5754, 158.98462, 1024.6962, 178.03369, 1021.2322, 221.0437, 1025.8165, 278.03064, 1031.3582, 364.0149, 1040.3981, 421.9889, 1040.4923, 462.98877, 1055.797, 533.9447, 1078.1443, 568.8801, 1111.1683, 598.78455, 1179.7759, 609.58606, 1244.839, 628.3977, 1299.2301, 654.24023, 1339.4026, 694.124, 1452.5647, 713.7965, 1554.8228, 639.50024, 1635.6265, 531.26587, 1687.2627, 521.11633, 1726.3745, 487.00305, 1757.553, 488.91272, 1774.4896, 494.86377, 1813.6863, 497.75024, 1846.5679, 465.6549, 1877.7211, 456.5647, 1955.2031, 453.34033, 1984.6438, 474.25513, 2014.1671, 531.1699, 2044.5421, 571.08215, 2070.6106, 675.00696, 2080.5803, 749.9784, 2078.0002, 789.98584, 2066.4927, 821.0194, 2060.352, 862.03723, 2051.5164, 893.063, 2063.1895, 934.0292, 2058.8257, 973.042, 2058.1624, 1072.0443, 2066.213, 1087.021, 2058.2336, 1103.0442, 2015.5383, 1128.1678, 1922.8987, 1124.436, 1815.1494, 1134.748, 1741.1979, 1123.9622, 1617.3843, 1120.3206, 1511.412, 1128.6274, 1412.542, 1126.9137, 1216.6455, 1150.481, 1040.2866, 1148.9917, 977.9529, 1155.172, 962.8268, 2325.2197, 1139.441, 2825.71, 333.6067, 2928.0435, 743.8573, 446.84753, 985.1941, 42.147705, 2139.502, 33.80542, 2032.9053, 158.1145, 1995.5565, 184.22266, 1985.8809, 237.25073, 1959.2109, 259.32813, 1923.5977, 265.4314, 1908.4308, 254.4751, 1864.7853, 253.60156, 1790.0165, 274.8181, 1735.7012, 281.97534, 1592.6119, 417.39, 1511.6107, 439.62463, 1383.2957, 414.9961, 1304.7964, 363.22314, 1219.9983, 283.4685, 1172.8221, 296.6051, 1159.4481, 290.6438, 1121.9524, 252.7522, 1056.733, 165.94092)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls/StaticBody2D" unique_id=1549811391]
 position = Vector2(-409, 2320)
