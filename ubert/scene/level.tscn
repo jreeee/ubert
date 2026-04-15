@@ -71,6 +71,7 @@
 [ext_resource type="Texture2D" uid="uid://dsrymvlu7r0jk" path="res://assets/effects/implosion-Sheet.png" id="65_2tbbd"]
 [ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://ck1j61x7w2w2a" path="res://assets/background/map.png" id="66_2tbbd"]
+[ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="69_8ibpr"]
 [ext_resource type="Texture2D" uid="uid://chfg12orwkk7o" path="res://assets/font-export.png" id="73_8ibpr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
@@ -201,89 +202,16 @@ _data = {
 &"ubert_grab": SubResource("Animation_0xlfg")
 }
 
-[sub_resource type="Shader" id="Shader_bom8a"]
-code = "shader_type canvas_item;
-
-uniform vec2 light_pos;
-uniform vec2 light_dir = vec2(1.0, 0.0);
-uniform float strength = 0.0;
-uniform float depth = 0.0;
-uniform float angle = 0.3;
-uniform float radius = 0.5;
-uniform float softness = 0.2;
-uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
-uniform float pixel_size = 6.0;
-
-void fragment() {
-    float ajusted_rad = radius * strength;
-    vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
-    vec2 uv = SCREEN_UV;
-
-    uv = floor(uv * resolution / pixel_size) * pixel_size / resolution;
-    // --- Light cone ---
-    vec2 to_pixel = uv - light_pos;
-    float dist = length(to_pixel);
-
-    vec2 dir = dist > 0.0001 ? to_pixel / dist : vec2(0.0);
-
-    float angle_diff = dot(dir, normalize(light_dir));
-
-    float cone = smoothstep(cos(angle + softness), cos(angle), angle_diff);
-    //float cone = smoothstep(cos(angle + softness), cos(angle - softness), angle_diff);
-    float falloff = 1.0 - smoothstep(ajusted_rad - softness, ajusted_rad, dist);
-
-    float mask = cone * falloff * strength;
-
-
-    // ---------------------------------------------------
-    // 1. TIGHT ellipsoid vignette shape
-    // ---------------------------------------------------
-    vec2 d = uv - vec2(0.5);
-
-    float dist2 = length(max(abs(d) - vec2(0.06), 0.0));
-    dist2 *= 1.9;
-
-    float vignette = smoothstep(0.0, 0.5, dist2);
-    //vignette = vignette;
-
-    // ---------------------------------------------------
-    // 2. Depth → darkness strength (0 → 0.5)
-    // ---------------------------------------------------
-    float t = clamp((depth - 20.0) / 3500.0, 0.0, 1.0);
-    t = smoothstep(0.0, 1.0, t);
-
-    //float vignette = smoothstep(0.0, 0.1 * (1.2 - t), dist2);
-
-    float strength2 = t * 0.95;
-
-    // ---------------------------------------------------
-    // 3. APPLY TO IMAGE (THIS IS THE FIX)
-    // ---------------------------------------------------
-    vec4 col = texture(SCREEN_TEXTURE, SCREEN_UV);
-
-    float levels = 0.1;
-    float quantized = (vignette * strength2 * levels) / levels;
-    float darkness = clamp(quantized, 0.0, 0.95);
-
-    col.rgb *= (1.0 - darkness);
-
-    // light removes darkness
-    darkness *= (1.0 - mask);
-    //COLOR = vec4(vec3(vignette), 1.0);
-    COLOR = vec4(0.0, 0.0, 0.05 * t, darkness);
-    //COLOR = vec4(1.0, 0.0, 0.0, 0.7);
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ne45u"]
-shader = SubResource("Shader_bom8a")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oui4u"]
+shader = ExtResource("69_8ibpr")
 shader_parameter/light_pos = Vector2(0, 0)
 shader_parameter/light_dir = Vector2(1, 0)
 shader_parameter/strength = 0.0
 shader_parameter/depth = 0.0
-shader_parameter/angle = 0.5
+shader_parameter/angle = 0.3
 shader_parameter/radius = 0.5
-shader_parameter/softness = 0.1
-shader_parameter/pixel_size = 4.0
+shader_parameter/softness = 0.2
+shader_parameter/pixel_size = 6.0
 
 [node name="Main" type="Node2D" unique_id=1152862137]
 script = ExtResource("1_t2nud")
@@ -1078,7 +1006,7 @@ anchors_preset = 0
 
 [node name="VignetteA" type="ColorRect" parent="UiKrams" unique_id=1561269321]
 texture_filter = 1
-material = SubResource("ShaderMaterial_ne45u")
+material = SubResource("ShaderMaterial_oui4u")
 custom_minimum_size = Vector2(640, 360)
 layout_mode = 0
 offset_left = -640.0
