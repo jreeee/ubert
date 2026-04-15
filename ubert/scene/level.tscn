@@ -71,7 +71,6 @@
 [ext_resource type="Texture2D" uid="uid://dsrymvlu7r0jk" path="res://assets/effects/implosion-Sheet.png" id="65_2tbbd"]
 [ext_resource type="Texture2D" uid="uid://dcfmsb0jxhqoy" path="res://assets/ui/shader_vignette.png" id="65_dfxqg"]
 [ext_resource type="Texture2D" uid="uid://ck1j61x7w2w2a" path="res://assets/background/map.png" id="66_2tbbd"]
-[ext_resource type="Shader" uid="uid://b1gg1ory4ur" path="res://shaders/dark.gdshader" id="69_8ibpr"]
 [ext_resource type="Texture2D" uid="uid://chfg12orwkk7o" path="res://assets/font-export.png" id="73_8ibpr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k6k75"]
@@ -203,15 +202,6 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oui4u"]
-shader = ExtResource("69_8ibpr")
-shader_parameter/light_pos = Vector2(0, 0)
-shader_parameter/light_dir = Vector2(1, 0)
-shader_parameter/strength = 0.0
-shader_parameter/depth = 0.0
-shader_parameter/angle = 0.3
-shader_parameter/radius = 0.5
-shader_parameter/softness = 0.2
-shader_parameter/pixel_size = 6.0
 
 [node name="Main" type="Node2D" unique_id=1152862137]
 script = ExtResource("1_t2nud")

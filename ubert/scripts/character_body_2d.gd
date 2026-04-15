@@ -66,7 +66,9 @@ func _ready() -> void:
 	grabber.monitoring = true
 	grabber.monitorable = true
 	vignette_tex_a.visible = true
+	var shader = preload("res://shaders/dark.gdshader")
 	vignette_mat = vignette_tex_a.material
+	vignette_mat.shader = shader
 
 func _grab() -> void:
 	if is_game_over:
